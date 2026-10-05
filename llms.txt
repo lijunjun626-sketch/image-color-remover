@@ -1,0 +1,24 @@
+# Image Color Remover
+
+> A free browser-based tool for removing one selected color from an image and exporting the result as a transparent PNG.
+
+Canonical URL: https://imagecolorremover.com/
+Language: English
+Access: Free, no account required
+Privacy: Images are processed locally in the browser and are not uploaded to a server.
+
+## What the tool does
+
+- Opens PNG, JPG, JPEG, and WebP images supported by the browser.
+- Lets the user click a pixel or enter a HEX color.
+- Makes the selected color and similar shades transparent.
+- Provides color tolerance, edge softness, before-and-after preview, and PNG download.
+- Works best for logos, icons, scanned signatures, green-screen graphics, and images with a flat or consistent background color.
+
+## Important limitation
+
+This is a color-based transparency tool, not an AI subject detector. For complex multicolor scenes, detailed hair, or backgrounds that share colors with the subject, an AI background remover or manual masking tool may produce better results.
+
+## Primary page
+
+- [Remove Color From Image Online](https://imagecolorremover.com/): live tool, instructions, examples, privacy explanation, color-removal guide, limitations, and FAQ.

@@ -89,8 +89,11 @@
     .privacy-chip { display: inline-flex; align-items: center; gap: 7px; padding: 8px 13px; border: 1px solid var(--ink); border-radius: 999px; font-family: var(--mono); font-size: 11px; letter-spacing: .03em; background: var(--white); }
     .privacy-dot { width: 7px; height: 7px; border-radius: 50%; background: #19a45b; box-shadow: 0 0 0 3px #ccefdc; }
     .marquee { overflow: hidden; color: var(--white); background: var(--ink); border-bottom: 2px solid var(--ink); }
-    .marquee-track { min-height: 39px; display: flex; align-items: center; justify-content: space-around; gap: 32px; white-space: nowrap; font: 700 10px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; }
+    .marquee-track { width: max-content; min-height: 39px; display: flex; align-items: center; white-space: nowrap; font: 700 10px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; animation: top-marquee 24s linear infinite; }
+    .marquee:hover .marquee-track { animation-play-state: paused; }
+    .marquee-set { display: flex; align-items: center; gap: 32px; padding-right: 32px; }
     .marquee-track b { color: var(--lime); font-size: 16px; }
+    @keyframes top-marquee { to { transform: translateX(-50%); } }
     .hero { position: relative; display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(360px, .88fr); gap: 42px; align-items: center; min-height: 620px; padding: 58px 0 52px; isolation: isolate; }
     .hero-copy-block { position: relative; z-index: 2; }
     .eyebrow { margin: 0 0 18px; font: 700 12px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; }
@@ -228,6 +231,23 @@
     .decision-card:last-child { background: var(--lilac); }
     .decision-card b { font: 800 10px/1 var(--mono); letter-spacing: .09em; text-transform: uppercase; }
     .decision-card p { margin: 10px 0 0; line-height: 1.55; }
+    .task-reel { padding: 84px 0; overflow: hidden; color: var(--white); background: var(--ink); }
+    .task-reel .section-head { width: min(1240px, calc(100% - 40px)); margin-left: auto; margin-right: auto; }
+    .task-reel .section-head p { color: #c9c9c3; }
+    .task-reel-window { overflow: hidden; -webkit-mask-image: linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent); mask-image: linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent); }
+    .task-reel-track { display: flex; width: max-content; animation: task-reel-scroll 72s linear infinite; }
+    .task-reel-window:hover .task-reel-track { animation-play-state: paused; }
+    .task-reel-set { display: flex; gap: 14px; padding-right: 14px; }
+    .task-chip { width: 260px; min-height: 148px; padding: 20px; border: 1px solid #60605b; border-radius: 22px; color: var(--ink); background: var(--white); }
+    .task-chip:nth-child(4n+1) { background: var(--lime); }
+    .task-chip:nth-child(4n+2) { background: var(--lilac); }
+    .task-chip:nth-child(4n+3) { background: var(--coral); }
+    .task-chip:nth-child(4n+4) { background: var(--blue); }
+    .task-chip b { font: 800 9px/1 var(--mono); letter-spacing: .09em; text-transform: uppercase; }
+    .task-chip h3 { margin: 18px 0 7px; font-size: 21px; line-height: 1.05; letter-spacing: -.035em; }
+    .task-chip p { margin: 0; font-size: 13px; line-height: 1.45; }
+    .task-reel-note { width: min(1240px, calc(100% - 40px)); margin: 22px auto 0; color: #aaa; font: 500 11px/1.5 var(--mono); text-align: center; }
+    @keyframes task-reel-scroll { to { transform: translateX(-50%); } }
     .proof-note { margin: 38px 0 0; color: var(--muted); font: 500 11px/1.5 var(--mono); text-align: center; }
     .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
     .step-card { min-height: 310px; padding: 28px; border: 2px solid var(--ink); border-radius: var(--radius); display: flex; flex-direction: column; justify-content: space-between; }
@@ -336,6 +356,10 @@
       .privacy-art { min-height: 360px; }
       .footer-row { flex-direction: column; }
     }
+    @media (prefers-reduced-motion: reduce) {
+      .marquee-track, .task-reel-track { animation: none; }
+      .task-reel-window { overflow-x: auto; -webkit-mask-image: none; mask-image: none; }
+    }
   </style>
 </head>
 <body>
@@ -343,7 +367,7 @@
     <a class="brand" href="/" aria-label="Image Color Remover home"><span class="brand-mark" aria-hidden="true"></span><span>Image Color Remover</span></a>
     <nav class="nav-links" aria-label="Main navigation"><a href="#how">How it works</a><a href="#guide">Color guide</a><a href="#faq">FAQ</a><span class="privacy-chip"><i class="privacy-dot"></i> Runs locally</span></nav>
   </header>
-  <div class="marquee" aria-hidden="true"><div class="marquee-track"><span>Pick a pixel</span><b>●</b><span>Remove the color</span><b>✦</b><span>Keep every detail</span><b>●</b><span>Export transparent PNG</span><b>✦</b><span>100% local</span></div></div>
+  <div class="marquee" aria-hidden="true"><div class="marquee-track"><div class="marquee-set"><span>Pick a pixel</span><b>●</b><span>Remove the color</span><b>✦</b><span>Adjust tolerance</span><b>●</b><span>Export transparent PNG</span><b>✦</b><span>100% local</span><b>●</b></div><div class="marquee-set"><span>Pick a pixel</span><b>●</b><span>Remove the color</span><b>✦</b><span>Adjust tolerance</span><b>●</b><span>Export transparent PNG</span><b>✦</b><span>100% local</span><b>●</b></div></div></div>
 
   <main>
     <section class="shell hero">
@@ -481,6 +505,37 @@
         <article class="content-card"><h3><a href="/remove-color-from-png/">Remove a color from PNG</a></h3><p>Choose one exact color or a nearby range, preview the transparent pixels, and download a new PNG.</p></article>
         <article class="content-card"><h3><a href="/remove-white-background-from-image/">Remove a white background</a></h3><p>Clear white and off-white pixels with tolerance controls, plus guidance for halos and light details.</p></article>
       </div>
+    </section>
+
+    <section class="task-reel" aria-labelledby="task-reel-heading">
+      <div class="section-head"><h2 id="task-reel-heading">Twenty practical<br>color-removal jobs.</h2><p>These are example tasks the tool is designed to handle — not fabricated customer reviews. Hover to pause the moving list.</p></div>
+      <div class="task-reel-window">
+        <div class="task-reel-track">
+          <div class="task-reel-set">
+            <article class="task-chip"><b>01 / LOGO</b><h3>Clear a white logo box</h3><p>Make the flat canvas around a brand mark transparent.</p></article>
+            <article class="task-chip"><b>02 / SIGNATURE</b><h3>Remove paper color</h3><p>Keep dark ink while clearing cream or white paper.</p></article>
+            <article class="task-chip"><b>03 / PRODUCT</b><h3>Clear a studio backdrop</h3><p>Remove one consistent color behind simple product art.</p></article>
+            <article class="task-chip"><b>04 / ICON</b><h3>Delete one icon fill</h3><p>Target an exact unwanted color in a flat icon.</p></article>
+            <article class="task-chip"><b>05 / GREEN SCREEN</b><h3>Remove a green field</h3><p>Sample the green and tune tolerance for nearby shades.</p></article>
+            <article class="task-chip"><b>06 / STAMP</b><h3>Isolate a scanned stamp</h3><p>Clear the page while retaining darker stamped pixels.</p></article>
+            <article class="task-chip"><b>07 / PIXEL ART</b><h3>Clear a sprite color</h3><p>Use low tolerance and no softness for hard pixel edges.</p></article>
+            <article class="task-chip"><b>08 / STICKER</b><h3>Remove a border color</h3><p>Turn a consistent sticker surround into transparency.</p></article>
+            <article class="task-chip"><b>09 / DIAGRAM</b><h3>Clear a flat canvas</h3><p>Keep lines and labels while removing one background tone.</p></article>
+            <article class="task-chip"><b>10 / SCREENSHOT</b><h3>Hide a UI color</h3><p>Make one repeated flat interface color transparent.</p></article>
+            <article class="task-chip"><b>11 / LINE ART</b><h3>Remove white paper</h3><p>Keep dark drawing strokes on a transparent layer.</p></article>
+            <article class="task-chip"><b>12 / QR GRAPHIC</b><h3>Clear the outer canvas</h3><p>Remove a plain surrounding color without changing the code.</p></article>
+            <article class="task-chip"><b>13 / BADGE</b><h3>Cut out a flat badge</h3><p>Remove the single color surrounding a simple badge.</p></article>
+            <article class="task-chip"><b>14 / SCAN</b><h3>Remove gray paper</h3><p>Sample the actual scan background instead of pure white.</p></article>
+            <article class="task-chip"><b>15 / PRESENTATION</b><h3>Prepare a transparent asset</h3><p>Clear the background before placing art on a slide.</p></article>
+            <article class="task-chip"><b>16 / E-COMMERCE</b><h3>Clear a color card</h3><p>Remove a controlled backdrop from a simple catalog graphic.</p></article>
+            <article class="task-chip"><b>17 / MAP</b><h3>Remove one map fill</h3><p>Turn an unwanted region color transparent for an overlay.</p></article>
+            <article class="task-chip"><b>18 / CHART</b><h3>Clear a plot background</h3><p>Keep chart marks while removing a uniform panel color.</p></article>
+            <article class="task-chip"><b>19 / LABEL</b><h3>Extract dark label art</h3><p>Clear the light label stock around printed artwork.</p></article>
+            <article class="task-chip"><b>20 / WEB ASSET</b><h3>Prepare a transparent PNG</h3><p>Export a clean asset that can sit on any page color.</p></article>
+          </div>
+        </div>
+      </div>
+      <p class="task-reel-note">Illustrative use cases only. Results depend on color variation, shadows, compression, and the tolerance selected.</p>
     </section>
 
     <section class="shell section" id="faq">
@@ -773,6 +828,13 @@
         showToast(`${button.dataset.preset[0].toUpperCase()}${button.dataset.preset.slice(1)} preset loaded.`);
       });
     });
+    const taskReelTrack = document.querySelector('.task-reel-track');
+    const taskReelSet = document.querySelector('.task-reel-set');
+    if (taskReelTrack && taskReelSet) {
+      const duplicateTaskSet = taskReelSet.cloneNode(true);
+      duplicateTaskSet.setAttribute('aria-hidden', 'true');
+      taskReelTrack.append(duplicateTaskSet);
+    }
     document.querySelector('#reset').addEventListener('click', () => { fileInput.value=''; tolerance.value=18; softness.value=8; preserve.checked=true; colorPicker.value='#35a86b'; hexInput.value='#35A86B'; document.querySelector('#tolerance-value').textContent='18'; document.querySelector('#softness-value').textContent='8'; updateRangeFill(tolerance); updateRangeFill(softness); mode='result'; setActiveTab(); drawDemo(); });
     drawDemo();
   </script>

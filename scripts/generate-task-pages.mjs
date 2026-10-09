@@ -24,6 +24,24 @@ const pages = [
         <article class="content-card"><h3>Privacy and file handling</h3><p>The selected image is decoded and processed by JavaScript and Canvas in your browser. The tool does not upload the source image, require an account, or store a copy on our server. Closing or refreshing the page clears the current working image from the page.</p><p>You can open PNG, JPG, JPEG, or WebP files, but the output is always PNG so transparency is preserved. Keep your original file: the download creates a new file whose name ends in <code>-transparent.png</code>.</p></article>
       </div>
       <div class="quick-answer"><h2>PNG color removal checklist</h2><p><strong>Choose the PNG → click the unwanted color → tune tolerance → inspect the checkerboard → download the transparent PNG.</strong> For a white or nearly white background, use the dedicated <a href="/remove-white-background-from-image/">white background remover guide and tool</a>.</p></div>
+    </section>
+    <section class="shell section" aria-labelledby="png-examples-heading">
+      <div class="section-head"><h2 id="png-examples-heading">Three PNG jobs<br>this tool handles well.</h2><p>These examples all depend on selecting a known pixel color, not detecting a person or object.</p></div>
+      <div class="use-grid">
+        <article class="use-card"><b>01 / BRAND ASSET</b><div><h3>Clear a color behind a logo</h3><p>Click the flat canvas color around a PNG logo. Keep tolerance low so the logo colors and existing transparent pixels remain intact.</p></div></article>
+        <article class="use-card"><b>02 / ICON</b><div><h3>Remove one fill from an icon</h3><p>Target a single unwanted fill in a simple icon or sticker. Use a tolerance near zero when the artwork uses exact digital colors.</p></div></article>
+        <article class="use-card"><b>03 / PIXEL ART</b><div><h3>Make a sprite color transparent</h3><p>Select the designated background color and use zero softness to preserve hard pixel edges in sprites and retro graphics.</p></div></article>
+        <article class="use-card"><b>04 / EXISTING ALPHA</b><div><h3>Keep transparent areas transparent</h3><p>The tool preserves pixels that already have zero alpha while making the newly selected color transparent in the exported PNG.</p></div></article>
+      </div>
+    </section>
+    <section class="shell section" aria-labelledby="png-steps-heading">
+      <div class="section-head"><h2 id="png-steps-heading">A precise PNG<br>workflow.</h2><p>Start narrow, inspect the result, and expand the selected color range only when the artwork needs it.</p></div>
+      <div class="steps-grid">
+        <article class="step-card"><b>1</b><h3>Open the original PNG</h3><p>Choose the highest-quality source available. Existing transparency is retained.</p></article>
+        <article class="step-card"><b>2</b><h3>Sample the unwanted color</h3><p>Click a representative pixel or enter its six-digit HEX value.</p></article>
+        <article class="step-card"><b>3</b><h3>Tune for the artwork</h3><p>Use low tolerance for exact fills; add a little tolerance and softness for anti-aliased edges.</p></article>
+        <article class="step-card"><b>4</b><h3>Download a new PNG</h3><p>Inspect the checkerboard, export the result, and keep the untouched source file.</p></article>
+      </div>
     </section>`,
     faqTitle: 'Remove color from PNG FAQ',
     faq: [
@@ -38,9 +56,9 @@ const pages = [
     path: 'remove-white-background-from-image',
     title: 'Remove White Background From Image Online — Free & Private',
     description: 'Remove a white or near-white background from an image and download a transparent PNG. Adjust tolerance for off-white edges. Free, private, and no upload.',
-    heading: 'Remove <span class="highlight">white</span><br>background.',
+    heading: 'Remove <span class="highlight">white</span><br>background from image.',
     eyebrow: 'Free white background remover',
-    hero: 'Make a white or near-white background transparent. Adjust tolerance for edge shades and download a PNG — without uploading your image.',
+    hero: 'Remove a white background from an image by selecting white or an off-white shade. Adjust edge tolerance and download a transparent PNG — without uploading your image.',
     quickTitle: 'How to remove a white background from an image',
     quick: 'Open the image, choose white (#FFFFFF) or click a clean background area, adjust tolerance until the white edge disappears, and download the result as a transparent PNG.',
     toolTitle: 'White background remover tool',
@@ -55,6 +73,24 @@ const pages = [
         <article class="content-card"><h3>How to avoid a white halo</h3><p>Click the white background close to the subject edge, then raise tolerance a little at a time. A small edge-softness value can blend partially matching edge pixels. If the subject becomes translucent, reduce tolerance first; too much softness can also blur a crisp logo.</p><p>The output downloads as PNG because JPEG cannot store transparency. Place the PNG over a dark test background to spot any remaining white fringe, then return and fine-tune the controls if needed.</p></article>
       </div>
       <div class="quick-answer"><h2>White background removal checklist</h2><p><strong>Open the image → select white or click the background → raise tolerance slowly → check light details → download PNG.</strong> To remove a different flat color from a PNG, use the <a href="/remove-color-from-png/">PNG color remover</a>.</p></div>
+    </section>
+    <section class="shell section" aria-labelledby="white-examples-heading">
+      <div class="section-head"><h2 id="white-examples-heading">Where white-background<br>removal works best.</h2><p>Use this method when the background is a consistent white or near-white field and important parts of the subject are darker.</p></div>
+      <div class="use-grid">
+        <article class="use-card"><b>01 / LOGO</b><div><h3>Make a white logo box transparent</h3><p>Select the empty white area around the logo, then raise tolerance just enough to clear the anti-aliased white fringe.</p></div></article>
+        <article class="use-card"><b>02 / SCAN</b><div><h3>Remove paper behind a signature</h3><p>Sample the actual paper color instead of assuming pure white. Cream and gray paper often need a moderate tolerance.</p></div></article>
+        <article class="use-card"><b>03 / PRODUCT GRAPHIC</b><div><h3>Clear a white product backdrop</h3><p>This works for simple catalog-style graphics when the product does not contain important white highlights or white parts.</p></div></article>
+        <article class="use-card"><b>04 / LINE ART</b><div><h3>Keep dark marks, clear the page</h3><p>Convert white paper pixels to transparency while retaining darker handwriting, stamps, sketches, or printed lines.</p></div></article>
+      </div>
+    </section>
+    <section class="shell section" aria-labelledby="white-steps-heading">
+      <div class="section-head"><h2 id="white-steps-heading">How to make a white<br>background transparent.</h2><p>The safe approach is to begin with a narrow white range and watch the subject as you widen it.</p></div>
+      <div class="steps-grid">
+        <article class="step-card"><b>1</b><h3>Open the image</h3><p>Use PNG for existing transparency or open JPG and WebP when the source has a solid white canvas.</p></article>
+        <article class="step-card"><b>2</b><h3>Choose the real background white</h3><p>Keep #FFFFFF for pure white, or click the page or backdrop to sample its actual off-white value.</p></article>
+        <article class="step-card"><b>3</b><h3>Watch light subject details</h3><p>Increase tolerance slowly. Stop or lower it if a white shirt, reflection, snow, eye, or pale product detail begins to disappear.</p></article>
+        <article class="step-card"><b>4</b><h3>Check for a halo and export</h3><p>Add slight edge softness only if needed, inspect against the checkerboard, and download the transparent PNG.</p></article>
+      </div>
     </section>`,
     faqTitle: 'White background remover FAQ',
     faq: [
@@ -106,7 +142,7 @@ for (const page of pages) {
     .replace('<h2 id="tool-heading">Image color remover tool</h2>', `<h2 id="tool-heading">${page.toolTitle}</h2>`)
     .replace('value="#35a86b" aria-label="Color to remove"', `value="${page.accent}" aria-label="Color to remove"`)
     .replace('id="hex-input" value="#35A86B"', `id="hex-input" value="${page.accent.toUpperCase()}"`)
-    .replace('    <section class="shell section" id="faq">', `${page.content}\n\n    <section class="shell section" id="faq">`)
+    .replace(/    <section class="shell section" id="examples"[\s\S]*?    <section class="shell section" id="faq">/, `${page.content}\n\n    <section class="shell section" id="faq">`)
     .replace(/<div class="faq"><p class="eyebrow">Common questions<\/p><h2>Image color remover FAQ<\/h2>[\s\S]*?<\/div>\n    <\/section>/, `<div class="faq"><p class="eyebrow">Common questions</p><h2>${page.faqTitle}</h2>\n        ${faqHtml}\n      </div>\n    </section>`)
     .replace('<script src="./color-removal.js"></script>', '<script src="/color-removal.js"></script>')
     .replace("colorPicker.value='#35a86b'; hexInput.value='#35A86B';", `colorPicker.value='${page.accent}'; hexInput.value='${page.accent.toUpperCase()}';`);

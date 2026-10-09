@@ -116,6 +116,19 @@
     .swatch-b { width: 74px; height: 74px; right: 22px; bottom: 42px; background: var(--yellow); transform: rotate(8deg); border-radius: 50%; }
     .swatch-c { width: 58px; height: 114px; right: 18px; top: 145px; background: var(--mint); transform: rotate(-5deg); }
     .swatch-d { width: 62px; height: 62px; left: 36px; bottom: 40px; background: var(--white); transform: rotate(7deg); border-radius: 50% 50% 10px 50%; }
+    .hero-compare-card { --split: 52%; position: relative; min-height: 490px; border: 2px solid var(--ink); border-radius: 42% 24px 42% 24px; background: var(--lilac); overflow: hidden; }
+    .hero-compare-visual { position: absolute; inset: 24px 24px 82px; overflow: hidden; border: 2px solid var(--ink); border-radius: 30% 18px 30% 18px; background-color: #fff; background-image: linear-gradient(45deg,#d8d5cc 25%,transparent 25%),linear-gradient(-45deg,#d8d5cc 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#d8d5cc 75%),linear-gradient(-45deg,transparent 75%,#d8d5cc 75%); background-size: 22px 22px; background-position: 0 0,0 11px,11px -11px,-11px 0; }
+    .hero-compare-layer { position: absolute; inset: 0; }
+    .hero-compare-layer svg { display: block; width: 100%; height: 100%; }
+    .hero-compare-layer.after { z-index: 1; }
+    .hero-compare-layer.before { z-index: 2; clip-path: inset(0 0 0 var(--split)); }
+    .hero-divider { position: absolute; z-index: 3; top: 0; bottom: 0; left: var(--split); width: 2px; transform: translateX(-1px); background: var(--ink); pointer-events: none; }
+    .hero-divider::after { content: "↔"; position: absolute; left: 50%; top: 50%; display: grid; place-items: center; width: 42px; height: 42px; transform: translate(-50%,-50%); border: 2px solid var(--ink); border-radius: 50%; background: var(--lime); font: 800 17px/1 var(--mono); }
+    .hero-compare-label { position: absolute; z-index: 4; top: 14px; padding: 7px 10px; border: 1px solid var(--ink); border-radius: 999px; color: var(--white); background: var(--ink); font: 800 9px/1 var(--mono); letter-spacing: .08em; }
+    .hero-compare-label.after { left: 14px; }
+    .hero-compare-label.before { right: 14px; }
+    .hero-compare-control { position: absolute; z-index: 5; left: 26px; right: 26px; bottom: 23px; display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 14px; }
+    .hero-compare-control span { font: 800 10px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
     .quick-answer { display: grid; grid-template-columns: minmax(230px, 290px) 1fr; gap: 28px; align-items: start; margin: 0 auto 28px; padding: 22px 25px; border: 1px solid var(--ink); border-radius: 20px; background: var(--lime); }
     .quick-answer h2 { margin: 2px 0 0; font: 800 11px/1.3 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
     .quick-answer p { margin: 0; font-size: 16px; line-height: 1.55; }
@@ -208,6 +221,13 @@
     .compare-card p { margin: 0; font-size: 13px; line-height: 1.5; }
     .compare-meta { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 13px; }
     .compare-meta span { padding: 6px 8px; border: 1px solid var(--ink); border-radius: 999px; background: rgba(255,255,255,.66); font: 700 9px/1 var(--mono); text-transform: uppercase; }
+    .preset-action { width: 100%; min-height: 42px; margin-top: 14px; border: 1px solid var(--ink); border-radius: 999px; color: var(--white); background: var(--ink); font-weight: 760; cursor: pointer; }
+    .preset-action:hover { color: var(--ink); background: var(--lime); }
+    .decision-strip { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 34px auto 0; }
+    .decision-card { padding: 22px 24px; border: 2px solid var(--ink); border-radius: 22px; background: var(--lime); }
+    .decision-card:last-child { background: var(--lilac); }
+    .decision-card b { font: 800 10px/1 var(--mono); letter-spacing: .09em; text-transform: uppercase; }
+    .decision-card p { margin: 10px 0 0; line-height: 1.55; }
     .proof-note { margin: 38px 0 0; color: var(--muted); font: 500 11px/1.5 var(--mono); text-align: center; }
     .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
     .step-card { min-height: 310px; padding: 28px; border: 2px solid var(--ink); border-radius: var(--radius); display: flex; flex-direction: column; justify-content: space-between; }
@@ -262,6 +282,7 @@
       .nav-links a:not(.privacy-chip) { display: none; }
       .hero { grid-template-columns: 1fr; min-height: auto; }
       .hero-art { min-height: 420px; }
+      .hero-compare-card { min-height: 420px; }
       .editor { grid-template-columns: 1fr; }
       .controls { border-right: 0; border-bottom: 1px solid var(--line); }
       .stage { min-height: 520px; }
@@ -288,6 +309,9 @@
       .hero-copy { font-size: 16px; }
       .hero-actions { align-items: flex-start; flex-direction: column; }
       .hero-art { min-height: 340px; border-radius: 100px 20px 100px 20px; }
+      .hero-compare-card { min-height: 360px; border-radius: 100px 20px 100px 20px; }
+      .hero-compare-visual { inset: 16px 16px 74px; }
+      .hero-compare-control { left: 18px; right: 18px; }
       .art-poster { width: 205px; }
       .art-poster .word { font-size: 40px; }
       .swatch { opacity: .9; }
@@ -306,6 +330,7 @@
       .compare-card:nth-child(3) { grid-column: auto; }
       .content-grid { grid-template-columns: 1fr; }
       .use-grid { grid-template-columns: 1fr; }
+      .decision-strip { grid-template-columns: 1fr; }
       .content-card { padding: 24px; }
       .privacy-copy { padding: 34px 26px; }
       .privacy-art { min-height: 360px; }
@@ -323,7 +348,14 @@
   <main>
     <section class="shell hero">
       <div class="hero-copy-block"><p class="eyebrow">Free browser-based image tool</p><h1>Remove <span class="highlight">color</span><br>from image.</h1><p class="hero-copy">Pick the color you want gone, tune the tolerance, and download a transparent PNG. Nothing leaves your device.</p><div class="hero-actions"><a class="hero-cta" href="#tool-heading">Try the live tool ↓</a><div class="hero-notes" aria-label="Product benefits"><span>No sign-up</span><span>No upload</span><span>Pixel preview</span></div></div></div>
-      <div class="hero-art" aria-hidden="true"><div class="art-poster"><span class="label">SELECTED COLOR</span><span class="word">GREEN<br>OUT.</span><span class="hex">#35A86B → 0%</span></div><span class="swatch swatch-a">PICK</span><span class="swatch swatch-b">PNG</span><span class="swatch swatch-c">REMOVE</span><span class="swatch swatch-d">0%</span></div>
+      <div class="hero-compare-card">
+        <div class="hero-compare-visual">
+          <div class="hero-compare-layer before"><svg viewBox="0 0 560 470" role="img" aria-label="Logo on green before removing its background color"><rect width="560" height="470" fill="#35a86b"/><circle cx="280" cy="174" r="72" fill="none" stroke="#151515" stroke-width="20"/><path d="M238 174h84M280 132v84" stroke="#151515" stroke-width="20" stroke-linecap="round"/><text x="280" y="306" text-anchor="middle" fill="#151515" font-family="system-ui,sans-serif" font-size="54" font-weight="800" letter-spacing="5">NORTH</text><text x="280" y="344" text-anchor="middle" fill="#151515" font-family="monospace" font-size="16" font-weight="700" letter-spacing="4">STUDIO GOODS</text></svg></div>
+          <div class="hero-compare-layer after" aria-hidden="true"><svg viewBox="0 0 560 470"><circle cx="280" cy="174" r="72" fill="none" stroke="#151515" stroke-width="20"/><path d="M238 174h84M280 132v84" stroke="#151515" stroke-width="20" stroke-linecap="round"/><text x="280" y="306" text-anchor="middle" fill="#151515" font-family="system-ui,sans-serif" font-size="54" font-weight="800" letter-spacing="5">NORTH</text><text x="280" y="344" text-anchor="middle" fill="#151515" font-family="monospace" font-size="16" font-weight="700" letter-spacing="4">STUDIO GOODS</text></svg></div>
+          <span class="hero-compare-label after">AFTER</span><span class="hero-compare-label before">BEFORE</span><i class="hero-divider" aria-hidden="true"></i>
+        </div>
+        <label class="hero-compare-control"><span>Drag to compare</span><input id="hero-compare-range" type="range" min="5" max="95" value="52" aria-label="Compare the logo before and after color removal"></label>
+      </div>
     </section>
 
     <section class="shell quick-answer" aria-labelledby="quick-answer-heading"><h2 id="quick-answer-heading">How to remove a color from an image</h2><p>Open the file, click the color in the preview, adjust tolerance to include similar shades, and download the result as a transparent PNG. The entire process runs locally in your browser.</p></section>
@@ -333,7 +365,7 @@
       <div class="editor">
         <aside class="controls">
           <div class="step"><b>1</b> Open your image</div>
-          <label class="upload" id="drop-zone" for="file-input">
+          <label class="upload" id="drop-zone" for="file-input" tabindex="-1">
             <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 16V4m0 0L7 9m5-5 5 5M5 14v4a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4"/></svg><strong>Choose or drop an image</strong><span>PNG, JPG or WebP · up to 25 MB</span></div>
             <input id="file-input" type="file" accept="image/png,image/jpeg,image/webp">
           </label>
@@ -366,6 +398,11 @@
       </div>
     </section>
 
+    <section class="shell decision-strip" aria-label="Choose between color removal and AI background removal">
+      <article class="decision-card"><b>Use this color remover</b><p>For a solid background, logo, icon, signature, green screen, or simple flat graphic where you can pick the unwanted color.</p></article>
+      <article class="decision-card"><b>Use an AI background remover</b><p>For complex photos, hair, fur, busy scenes, or a background that shares important colors with the subject.</p></article>
+    </section>
+
     <section class="shell section" id="examples" aria-labelledby="examples-heading">
       <div class="section-head"><h2 id="examples-heading">See the color<br>disappear.</h2><p>Drag each control to compare the original image with the transparent PNG result. These examples show where removing one specific color works best.</p></div>
       <div class="proof-grid">
@@ -376,7 +413,7 @@
             <span class="compare-badge after">AFTER</span><span class="compare-badge before">BEFORE</span><i class="compare-divider" aria-hidden="true"></i>
           </div>
           <div class="compare-controls"><span>Drag to compare</span><input class="compare-range" type="range" min="5" max="95" value="54" aria-label="Compare the logo before and after green background removal"></div>
-          <figcaption><h3>Clean a logo background</h3><p>The flat green field is removed while the black logo remains sharp and usable on any layout.</p><div class="compare-meta"><span>Removed #35A86B</span><span>Tolerance 12</span><span>PNG</span></div></figcaption>
+          <figcaption><h3>Clean a logo background</h3><p>The flat green field is removed while the black logo remains sharp and usable on any layout.</p><div class="compare-meta"><span>Removed #35A86B</span><span>Tolerance 12</span><span>PNG</span></div><button class="preset-action" type="button" data-preset="logo">Try logo preset ↑</button></figcaption>
         </figure>
 
         <figure class="compare-card">
@@ -386,7 +423,7 @@
             <span class="compare-badge after">AFTER</span><span class="compare-badge before">BEFORE</span><i class="compare-divider" aria-hidden="true"></i>
           </div>
           <div class="compare-controls"><span>Drag to compare</span><input class="compare-range" type="range" min="5" max="95" value="54" aria-label="Compare the signature before and after paper color removal"></div>
-          <figcaption><h3>Isolate a signature</h3><p>Remove the paper color and keep the ink ready for a document, presentation, or approval workflow.</p><div class="compare-meta"><span>Removed #FFF2CF</span><span>Tolerance 20</span><span>PNG</span></div></figcaption>
+          <figcaption><h3>Isolate a signature</h3><p>Remove the paper color and keep the ink ready for a document, presentation, or approval workflow.</p><div class="compare-meta"><span>Removed #FFF2CF</span><span>Tolerance 20</span><span>PNG</span></div><button class="preset-action" type="button" data-preset="signature">Try signature preset ↑</button></figcaption>
         </figure>
 
         <figure class="compare-card">
@@ -396,7 +433,7 @@
             <span class="compare-badge after">AFTER</span><span class="compare-badge before">BEFORE</span><i class="compare-divider" aria-hidden="true"></i>
           </div>
           <div class="compare-controls"><span>Drag to compare</span><input class="compare-range" type="range" min="5" max="95" value="54" aria-label="Compare the product image before and after coral background removal"></div>
-          <figcaption><h3>Clear a studio color</h3><p>A consistent backdrop becomes transparent without asking an AI model to guess where the object begins.</p><div class="compare-meta"><span>Removed #FF8D78</span><span>Tolerance 16</span><span>PNG</span></div></figcaption>
+          <figcaption><h3>Clear a studio color</h3><p>A consistent backdrop becomes transparent without asking an AI model to guess where the object begins.</p><div class="compare-meta"><span>Removed #FF8D78</span><span>Tolerance 16</span><span>PNG</span></div><button class="preset-action" type="button" data-preset="studio">Try studio preset ↑</button></figcaption>
         </figure>
       </div>
       <p class="proof-note">Illustrative on-page examples. Actual results depend on color variation, shadows, compression, and the tolerance you choose.</p>
@@ -435,14 +472,6 @@
         <article class="use-card"><b>02 / SIGNATURES</b><div><h3>Isolate a signature</h3><p>Turn the paper color transparent while keeping the darker ink visible for a document.</p></div></article>
         <article class="use-card"><b>03 / PRODUCT ART</b><div><h3>Remove a studio color</h3><p>Clear a consistent backdrop from a simple product graphic without selecting every edge manually.</p></div></article>
         <article class="use-card"><b>04 / ICONS</b><div><h3>Rework flat graphics</h3><p>Remove a specific color from an icon, sticker, pixel graphic, or simple illustration.</p></div></article>
-      </div>
-    </section>
-
-    <section class="shell section" aria-labelledby="choose-tool-heading">
-      <div class="section-head"><h2 id="choose-tool-heading">When should you use a color remover?</h2><p>Use a color remover when the pixels you want to clear share one consistent color. It gives you direct control over the exact color range instead of asking a model to identify the subject.</p></div>
-      <div class="content-grid">
-        <article class="content-card"><h3>Use this tool for flat or consistent colors</h3><p>It is a strong fit for logos on white backgrounds, scanned signatures on paper, green-screen graphics, icons, stickers, simple product art, and screenshots with a solid color field. Click a representative pixel, start with a low tolerance, and increase it only until the unwanted color disappears.</p><p>The live checkerboard preview shows exactly which pixels became transparent. Because processing stays in the browser, it also suits private or unpublished images that you do not want to send to a remote service.</p></article>
-        <article class="content-card"><h3>Use an AI background remover for complex scenes</h3><p>Choose an AI subject-removal tool when the background contains many unrelated colors, detailed scenery, hair against a busy backdrop, reflections, or colors that also appear inside the subject. A color-based tool cannot understand which person or object you intended to keep.</p><p>If the selected color removes part of the subject, lower the tolerance or sample a cleaner area. For difficult photographs, masking in an image editor or using an AI background remover will usually produce a better edge.</p></article>
       </div>
     </section>
 
@@ -488,6 +517,7 @@
     let sourcePixels = null;
     let mode = 'result';
     let sourceName = 'color-removed';
+    let renderFrame = 0;
 
     function showToast(message) {
       toast.textContent = message;
@@ -530,6 +560,14 @@
       ctx.putImageData(output, 0, 0);
     }
 
+    function scheduleRender() {
+      if (renderFrame) return;
+      renderFrame = requestAnimationFrame(() => {
+        renderFrame = 0;
+        render();
+      });
+    }
+
     function roundedRect(context, x, y, width, height, radius) {
       if (typeof context.roundRect === 'function') {
         context.roundRect(x, y, width, height, radius);
@@ -544,22 +582,69 @@
       context.closePath();
     }
 
-    function drawDemo() {
+    function setPresetControls(color, toleranceValue, softnessValue) {
+      colorPicker.value = color.toLowerCase();
+      hexInput.value = color.toUpperCase();
+      tolerance.value = toleranceValue;
+      softness.value = softnessValue;
+      document.querySelector('#tolerance-value').textContent = toleranceValue;
+      document.querySelector('#softness-value').textContent = softnessValue;
+      updateRangeFill(tolerance);
+      updateRangeFill(softness);
+      preserve.checked = true;
+      mode = 'result';
+      setActiveTab();
+    }
+
+    function drawPreset(name = 'logo') {
       canvas.width = 1200;
       canvas.height = 800;
-      ctx.fillStyle = '#35a86b'; ctx.fillRect(0,0,1200,800);
-      ctx.fillStyle = '#fff8e8'; ctx.beginPath(); roundedRect(ctx,135,120,930,560,54); ctx.fill();
-      ctx.fillStyle = '#171717'; ctx.font = '700 82px system-ui'; ctx.fillText('COLOR', 215, 315);
-      ctx.fillText('OUT.', 215, 405);
-      ctx.fillStyle = '#ff8d78'; ctx.beginPath(); ctx.arc(840,305,118,0,Math.PI*2); ctx.fill();
-      ctx.fillStyle = '#c9b5ff'; ctx.fillRect(720,470,230,92);
-      ctx.fillStyle = '#171717'; ctx.font = '600 28px ui-monospace'; ctx.fillText('CLICK THE GREEN', 215, 535);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      if (name === 'white-logo') {
+        setPresetControls('#ffffff', 18, 6);
+        ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, 1200, 800);
+        ctx.fillStyle = '#ff8d78'; ctx.beginPath(); ctx.arc(600,285,145,0,Math.PI*2); ctx.fill();
+        ctx.strokeStyle = '#151515'; ctx.lineWidth = 28; ctx.beginPath(); ctx.arc(600,285,145,0,Math.PI*2); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(520,285); ctx.lineTo(680,285); ctx.moveTo(600,205); ctx.lineTo(600,365); ctx.stroke();
+        ctx.fillStyle = '#151515'; ctx.font = '800 92px system-ui'; ctx.textAlign = 'center'; ctx.fillText('CLEAR WHITE',600,560);
+        ctx.font = '700 26px ui-monospace'; ctx.fillText('BACKGROUND PRESET',600,615); ctx.textAlign = 'start';
+        sourceName = 'white-logo-background-removed';
+        stateLabel.textContent = 'White logo background preset loaded';
+      } else if (name === 'signature') {
+        setPresetControls('#fff2cf', 20, 7);
+        ctx.fillStyle = '#fff2cf'; ctx.fillRect(0, 0, 1200, 800);
+        ctx.strokeStyle = '#255dc5'; ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.lineWidth = 28;
+        ctx.beginPath(); ctx.moveTo(145,500); ctx.bezierCurveTo(270,205,310,680,430,360); ctx.bezierCurveTo(485,210,480,590,585,410); ctx.bezierCurveTo(675,255,690,625,820,360); ctx.bezierCurveTo(880,240,890,570,1040,420); ctx.stroke();
+        ctx.lineWidth = 15; ctx.beginPath(); ctx.moveTo(190,590); ctx.bezierCurveTo(470,535,730,555,1010,565); ctx.stroke();
+        sourceName = 'signature-paper-removed';
+        stateLabel.textContent = 'Signature preset loaded';
+      } else if (name === 'studio') {
+        setPresetControls('#ff8d78', 16, 8);
+        ctx.fillStyle = '#ff8d78'; ctx.fillRect(0, 0, 1200, 800);
+        ctx.fillStyle = 'rgba(80,30,30,.22)'; ctx.beginPath(); ctx.ellipse(600,680,220,42,0,0,Math.PI*2); ctx.fill();
+        ctx.fillStyle = '#255dc5'; ctx.strokeStyle = '#151515'; ctx.lineWidth = 12; ctx.beginPath(); roundedRect(ctx,465,215,270,420,72); ctx.fill(); ctx.stroke();
+        ctx.fillStyle = '#dfff70'; ctx.beginPath(); roundedRect(ctx,535,115,130,145,22); ctx.fill(); ctx.stroke();
+        ctx.fillStyle = '#f7f5ef'; ctx.beginPath(); roundedRect(ctx,505,360,190,145,16); ctx.fill(); ctx.stroke();
+        ctx.fillStyle = '#151515'; ctx.font = '700 30px ui-monospace'; ctx.textAlign = 'center'; ctx.fillText('SOLID',600,425); ctx.fillText('COLOR',600,466); ctx.textAlign = 'start';
+        sourceName = 'studio-backdrop-removed';
+        stateLabel.textContent = 'Studio backdrop preset loaded';
+      } else {
+        setPresetControls('#35a86b', 12, 4);
+        ctx.fillStyle = '#35a86b'; ctx.fillRect(0,0,1200,800);
+        ctx.strokeStyle = '#171717'; ctx.lineWidth = 30; ctx.beginPath(); ctx.arc(600,300,130,0,Math.PI*2); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(525,300); ctx.lineTo(675,300); ctx.moveTo(600,225); ctx.lineTo(600,375); ctx.stroke();
+        ctx.fillStyle = '#171717'; ctx.font = '800 100px system-ui'; ctx.textAlign = 'center'; ctx.fillText('NORTH',600,535);
+        ctx.font = '700 27px ui-monospace'; ctx.fillText('STUDIO GOODS',600,590); ctx.textAlign = 'start';
+        sourceName = 'logo-background-removed';
+        stateLabel.textContent = 'Logo preset loaded';
+      }
       sourcePixels = ctx.getImageData(0,0,canvas.width,canvas.height);
-      sourceName = 'color-out-demo';
       imageSize.textContent = '1200 × 800';
-      stateLabel.textContent = 'Demo image ready';
       render();
     }
+
+    function drawDemo() { drawPreset('logo'); }
 
     function loadFile(file) {
       const supportedMime = file && /^image\/(png|jpeg|webp)$/.test(file.type);
@@ -613,7 +698,7 @@
         render();
       });
     });
-    [tolerance, softness].forEach(input => { updateRangeFill(input); input.addEventListener('input', () => { updateRangeFill(input); document.querySelector(`#${input.id}-value`).textContent = input.value; mode='result'; setActiveTab(); render(); }); });
+    [tolerance, softness].forEach(input => { updateRangeFill(input); input.addEventListener('input', () => { updateRangeFill(input); document.querySelector(`#${input.id}-value`).textContent = input.value; mode='result'; setActiveTab(); scheduleRender(); }); });
     colorPicker.addEventListener('input', () => { hexInput.value = colorPicker.value.toUpperCase(); mode='result'; setActiveTab(); render(); });
     hexInput.addEventListener('change', () => { const rgb = hexToRgb(hexInput.value); if (!rgb) { hexInput.value = colorPicker.value.toUpperCase(); showToast('Enter a six-digit HEX color.'); return; } colorPicker.value = rgbToHex(...rgb).toLowerCase(); hexInput.value = colorPicker.value.toUpperCase(); render(); });
     preserve.addEventListener('change', render);
@@ -652,6 +737,20 @@
       const updateComparison = () => card.style.setProperty('--split', `${range.value}%`);
       range.addEventListener('input', updateComparison);
       updateComparison();
+    });
+    const heroCompare = document.querySelector('.hero-compare-card');
+    const heroCompareRange = document.querySelector('#hero-compare-range');
+    const updateHeroComparison = () => heroCompare.style.setProperty('--split', `${heroCompareRange.value}%`);
+    heroCompareRange.addEventListener('input', updateHeroComparison);
+    updateHeroComparison();
+    document.querySelectorAll('.preset-action').forEach(button => {
+      button.addEventListener('click', () => {
+        fileInput.value = '';
+        drawPreset(button.dataset.preset);
+        document.querySelector('.workspace').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        setTimeout(() => dropZone.focus(), 450);
+        showToast(`${button.dataset.preset[0].toUpperCase()}${button.dataset.preset.slice(1)} preset loaded.`);
+      });
     });
     document.querySelector('#reset').addEventListener('click', () => { fileInput.value=''; tolerance.value=18; softness.value=8; preserve.checked=true; colorPicker.value='#35a86b'; hexInput.value='#35A86B'; document.querySelector('#tolerance-value').textContent='18'; document.querySelector('#softness-value').textContent='8'; updateRangeFill(tolerance); updateRangeFill(softness); mode='result'; setActiveTab(); drawDemo(); });
     drawDemo();

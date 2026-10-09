@@ -148,7 +148,7 @@ for (const page of pages) {
     .replace("colorPicker.value='#35a86b'; hexInput.value='#35A86B';", `colorPicker.value='${page.accent}'; hexInput.value='${page.accent.toUpperCase()}';`);
 
   if (page.accent === '#ffffff') {
-    html = html.replace("drawDemo();\n  </script>", "drawDemo(); colorPicker.value='#ffffff'; hexInput.value='#FFFFFF'; render();\n  </script>");
+    html = html.replace("drawDemo();\n  </script>", "drawPreset('white-logo');\n  </script>");
   }
 
   await mkdir(page.path, { recursive: true });

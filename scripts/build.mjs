@@ -1,4 +1,5 @@
 import { cp, mkdir, rm } from 'node:fs/promises';
+import './generate-task-pages.mjs';
 
 const productionFiles = [
   'index.html',
@@ -13,6 +14,11 @@ const productionFiles = [
   'sitemap.xml'
 ];
 
+const productionDirectories = [
+  'remove-color-from-png',
+  'remove-white-background-from-image'
+];
+
 await rm('dist', { recursive: true, force: true });
 await mkdir('dist', { recursive: true });
 
@@ -20,4 +26,8 @@ for (const file of productionFiles) {
   await cp(file, `dist/${file}`);
 }
 
-console.log(`Built ${productionFiles.length} production assets in dist/`);
+for (const directory of productionDirectories) {
+  await cp(directory, `dist/${directory}`, { recursive: true });
+}
+
+console.log(`Built ${productionFiles.length} assets and ${productionDirectories.length} task pages in dist/`);

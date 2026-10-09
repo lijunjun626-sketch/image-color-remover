@@ -2,3 +2,5 @@ node_modules/
 dist/
 .wrangler/
 .DS_Store
+remove-color-from-png/
+remove-white-background-from-image/

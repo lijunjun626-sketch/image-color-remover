@@ -1,0 +1,742 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Remove Color From Logo Online — Make Logo Background Transparent</title>
+  <meta name="description" content="Remove one color from a logo online and export a transparent PNG. Click the logo background, keep edges crisp, and download privately with no upload.">
+  <meta name="msvalidate.01" content="701AD792A18721AC751E477CE8EFB2B7">
+  <link rel="canonical" href="https://imagecolorremover.com/remove-color-from-logo/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon-48.png" type="image/png" sizes="48x48">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="alternate" href="/llms.txt" type="text/plain" title="AI-readable site summary">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="theme-color" content="#f7f5ef">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:url" content="https://imagecolorremover.com/remove-color-from-logo/">
+  <meta property="og:site_name" content="Image Color Remover">
+  <meta property="og:title" content="Remove Color From Logo Online">
+  <meta property="og:description" content="Remove one color from a logo online and export a transparent PNG. Click the logo background, keep edges crisp, and download privately with no upload.">
+  <meta property="og:image" content="https://imagecolorremover.com/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Image Color Remover — click a color and make it transparent">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Remove Color From Logo Online">
+  <meta name="twitter:description" content="Remove one color from a logo online and export a transparent PNG. Click the logo background, keep edges crisp, and download privately with no upload.">
+  <meta name="twitter:image" content="https://imagecolorremover.com/og-image.png">
+  <meta name="twitter:image:alt" content="Image Color Remover — click a color and make it transparent">
+
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Remove Color From Logo Online","url":"https://imagecolorremover.com/remove-color-from-logo/","applicationCategory":"MultimediaApplication","operatingSystem":"Any","isAccessibleForFree":true,"browserRequirements":"Requires a modern browser with HTML Canvas and JavaScript enabled.","description":"Remove one color from a logo online and export a transparent PNG. Click the logo background, keep edges crisp, and download privately with no upload.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Local browser processing","Color tolerance control","Edge softness control","Transparent PNG download"]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can I make a logo background transparent?","acceptedAnswer":{"@type":"Answer","text":"Yes. Select the flat background color around the logo and export the result as a transparent PNG."}},{"@type":"Question","name":"Will the logo itself stay unchanged?","acceptedAnswer":{"@type":"Answer","text":"The tool changes pixels matching the selected range. Use low tolerance when the logo contains a similar color you want to keep."}},{"@type":"Question","name":"Does this work with JPG logos?","acceptedAnswer":{"@type":"Answer","text":"Yes, but the download is PNG because PNG is required to keep the new transparent background."}}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"HowTo","name":"How to remove a color from a logo","step":[{"@type":"HowToStep","position":1,"name":"Open an image","text":"Open an image"},{"@type":"HowToStep","position":2,"name":"Select the unwanted color","text":"Select the unwanted color"},{"@type":"HowToStep","position":3,"name":"Adjust tolerance and edge softness","text":"Adjust tolerance and edge softness"},{"@type":"HowToStep","position":4,"name":"Download the transparent PNG","text":"Download the transparent PNG"}]}</script>
+  <style>
+    :root {
+      --ink: #151515;
+      --paper: #f7f5ef;
+      --white: #fff;
+      --line: #d8d5cc;
+      --muted: #68675f;
+      --lime: #dfff70;
+      --lilac: #c9b5ff;
+      --coral: #ff8d78;
+      --blue: #89c7ff;
+      --mint: #bdebd1;
+      --yellow: #ffd94a;
+      --radius: 26px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; color: var(--ink); background: var(--paper); font-family: var(--sans); }
+    button, input { font: inherit; }
+    a { color: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+    .shell { width: min(1240px, calc(100% - 40px)); margin: 0 auto; }
+    .nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px; border-bottom: 1px solid var(--line); }
+    .brand { display: inline-flex; align-items: center; gap: 11px; text-decoration: none; font-weight: 760; letter-spacing: -.04em; }
+    .brand-mark { position: relative; width: 31px; height: 31px; border-radius: 9px; background: var(--ink); overflow: hidden; }
+    .brand-mark::before, .brand-mark::after { content: ""; position: absolute; border-radius: 50%; }
+    .brand-mark::before { width: 18px; height: 18px; background: var(--coral); left: -4px; top: -3px; }
+    .brand-mark::after { width: 16px; height: 16px; background: var(--lime); right: -3px; bottom: -2px; }
+    .nav-links { display: flex; align-items: center; gap: 28px; font-size: 14px; }
+    .nav-links a { text-decoration: none; }
+    .nav-links a:hover { text-decoration: underline; text-underline-offset: 5px; }
+    .privacy-chip { display: inline-flex; align-items: center; gap: 7px; padding: 8px 13px; border: 1px solid var(--ink); border-radius: 999px; font-family: var(--mono); font-size: 11px; letter-spacing: .03em; background: var(--white); }
+    .privacy-dot { width: 7px; height: 7px; border-radius: 50%; background: #19a45b; box-shadow: 0 0 0 3px #ccefdc; }
+    .marquee { overflow: hidden; color: var(--white); background: var(--ink); border-bottom: 2px solid var(--ink); }
+    .marquee-track { width: max-content; min-height: 39px; display: flex; align-items: center; white-space: nowrap; font: 700 10px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; animation: top-marquee 24s linear infinite; }
+    .marquee:hover .marquee-track { animation-play-state: paused; }
+    .marquee-set { display: flex; align-items: center; gap: 32px; padding-right: 32px; }
+    .marquee-track b { color: var(--lime); font-size: 16px; }
+    @keyframes top-marquee { to { transform: translateX(-50%); } }
+    .hero { position: relative; display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(360px, .88fr); gap: 42px; align-items: center; min-height: 620px; padding: 58px 0 52px; isolation: isolate; }
+    .hero-copy-block { position: relative; z-index: 2; }
+    .eyebrow { margin: 0 0 18px; font: 700 12px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; }
+    h1 { max-width: 790px; margin: 0; font-size: clamp(62px, 7.4vw, 108px); line-height: .86; letter-spacing: -.078em; font-weight: 660; }
+    .highlight { position: relative; display: inline-block; z-index: 0; }
+    .highlight::after { content: ""; position: absolute; left: -3%; right: -3%; bottom: .06em; height: .24em; background: var(--lime); transform: rotate(-1.2deg); z-index: -1; }
+    .hero-copy { max-width: 620px; margin: 28px 0 0; font-size: 19px; line-height: 1.55; color: var(--muted); }
+    .hero-actions { display: flex; align-items: center; gap: 18px; margin-top: 28px; }
+    .hero-cta { display: inline-flex; min-height: 48px; align-items: center; padding: 0 21px; border-radius: 999px; color: var(--white); background: var(--ink); text-decoration: none; font-weight: 740; }
+    .hero-cta:active { transform: scale(.97); }
+    .hero-notes { display: flex; flex-wrap: wrap; gap: 11px 18px; font: 600 11px/1.3 var(--mono); text-transform: uppercase; letter-spacing: .04em; }
+    .hero-notes span::before { content: "✓"; margin-right: 7px; }
+    .hero-art { position: relative; min-height: 490px; border: 2px solid var(--ink); border-radius: 42% 24px 42% 24px; background: var(--lilac); overflow: hidden; }
+    .hero-art::before { content: ""; position: absolute; width: 390px; height: 390px; left: -105px; bottom: -120px; border: 2px solid var(--ink); border-radius: 50%; background: var(--coral); }
+    .hero-art::after { content: ""; position: absolute; width: 220px; height: 220px; right: -52px; top: -46px; border: 2px solid var(--ink); background-color: var(--white); background-image: linear-gradient(45deg,#d8d5cc 25%,transparent 25%),linear-gradient(-45deg,#d8d5cc 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#d8d5cc 75%),linear-gradient(-45deg,transparent 75%,#d8d5cc 75%); background-size: 24px 24px; background-position: 0 0,0 12px,12px -12px,-12px 0; transform: rotate(9deg); }
+    .art-poster { position: absolute; z-index: 2; left: 50%; top: 50%; width: 270px; aspect-ratio: .78; transform: translate(-50%,-50%) rotate(-5deg); border: 2px solid var(--ink); border-radius: 22px; background: var(--white); box-shadow: 13px 13px 0 var(--lime); }
+    .art-poster span { position: absolute; left: 24px; font-family: var(--mono); }
+    .art-poster .label { top: 24px; font-size: 10px; font-weight: 800; letter-spacing: .08em; }
+    .art-poster .word { top: 76px; font: 760 54px/.87 var(--sans); letter-spacing: -.06em; }
+    .art-poster .hex { bottom: 24px; padding: 8px 11px; border: 1px solid var(--ink); border-radius: 999px; color: var(--white); background: var(--ink); font-size: 10px; font-weight: 800; }
+    .swatch { position: absolute; z-index: 3; display: grid; place-items: center; border: 2px solid var(--ink); border-radius: 18px; font: 800 10px/1 var(--mono); letter-spacing: .08em; }
+    .swatch-a { width: 98px; height: 98px; left: 22px; top: 34px; background: var(--blue); transform: rotate(-11deg); }
+    .swatch-b { width: 74px; height: 74px; right: 22px; bottom: 42px; background: var(--yellow); transform: rotate(8deg); border-radius: 50%; }
+    .swatch-c { width: 58px; height: 114px; right: 18px; top: 145px; background: var(--mint); transform: rotate(-5deg); }
+    .swatch-d { width: 62px; height: 62px; left: 36px; bottom: 40px; background: var(--white); transform: rotate(7deg); border-radius: 50% 50% 10px 50%; }
+    .hero-compare-card { --split: 52%; position: relative; min-height: 490px; border: 2px solid var(--ink); border-radius: 42% 24px 42% 24px; background: var(--lilac); overflow: hidden; }
+    .hero-compare-visual { position: absolute; inset: 24px 24px 82px; overflow: hidden; border: 2px solid var(--ink); border-radius: 30% 18px 30% 18px; background-color: #fff; background-image: linear-gradient(45deg,#d8d5cc 25%,transparent 25%),linear-gradient(-45deg,#d8d5cc 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#d8d5cc 75%),linear-gradient(-45deg,transparent 75%,#d8d5cc 75%); background-size: 22px 22px; background-position: 0 0,0 11px,11px -11px,-11px 0; cursor: ew-resize; touch-action: none; user-select: none; }
+    .hero-compare-layer { position: absolute; inset: 0; }
+    .hero-compare-layer svg { display: block; width: 100%; height: 100%; }
+    .hero-compare-layer.after { z-index: 1; }
+    .hero-compare-layer.before { z-index: 2; clip-path: inset(0 0 0 var(--split)); }
+    .hero-divider { position: absolute; z-index: 3; top: 0; bottom: 0; left: var(--split); width: 2px; transform: translateX(-1px); background: var(--ink); pointer-events: none; }
+    .hero-divider::after { content: "↔"; position: absolute; left: 50%; top: 50%; display: grid; place-items: center; width: 42px; height: 42px; transform: translate(-50%,-50%); border: 2px solid var(--ink); border-radius: 50%; background: var(--lime); font: 800 17px/1 var(--mono); }
+    .hero-compare-label { position: absolute; z-index: 4; top: 14px; padding: 7px 10px; border: 1px solid var(--ink); border-radius: 999px; color: var(--white); background: var(--ink); font: 800 9px/1 var(--mono); letter-spacing: .08em; }
+    .hero-compare-label.after { left: 14px; }
+    .hero-compare-label.before { right: 14px; }
+    .hero-compare-control { position: absolute; z-index: 5; left: 26px; right: 26px; bottom: 23px; display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 14px; }
+    .hero-compare-control span { font: 800 10px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+    .quick-answer { display: grid; grid-template-columns: minmax(230px, 290px) 1fr; gap: 28px; align-items: start; margin: 0 auto 28px; padding: 22px 25px; border: 1px solid var(--ink); border-radius: 20px; background: var(--lime); }
+    .quick-answer h2 { margin: 2px 0 0; font: 800 11px/1.3 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+    .quick-answer p { margin: 0; font-size: 16px; line-height: 1.55; }
+    .workspace { margin-bottom: 28px; border: 2px solid var(--ink); border-radius: 30px; background: var(--ink); overflow: hidden; box-shadow: 9px 9px 0 var(--lilac); }
+    .workspace-bar { min-height: 58px; padding: 12px 18px; display: flex; align-items: center; justify-content: space-between; gap: 20px; color: var(--white); }
+    .workspace-title { display: flex; align-items: center; gap: 10px; font: 700 12px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+    .workspace-title h2 { margin: 0; font: inherit; letter-spacing: inherit; }
+    .workspace-title i { width: 10px; height: 10px; border-radius: 50%; background: var(--lime); }
+    .workspace-state { color: #aaa; font: 500 11px/1 var(--mono); }
+    .editor { display: grid; grid-template-columns: 308px minmax(0, 1fr); min-height: 620px; background: var(--white); border-radius: 27px 27px 0 0; overflow: hidden; }
+    .controls { padding: 26px; border-right: 1px solid var(--line); background: #fbfaf6; }
+    .step { display: flex; align-items: center; gap: 10px; margin-bottom: 13px; font: 700 11px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+    .step b { display: grid; place-items: center; width: 24px; height: 24px; border: 1px solid var(--ink); border-radius: 50%; font-size: 10px; background: var(--yellow); }
+    .upload { position: relative; display: grid; place-items: center; min-height: 150px; padding: 24px; border: 1.5px dashed var(--ink); border-radius: 18px; text-align: center; background: var(--white); cursor: pointer; transition: transform .16s, background .16s; }
+    .upload:hover, .upload.is-over { transform: translateY(-2px); background: #f1ffe1; }
+    .upload svg { width: 27px; height: 27px; margin-bottom: 8px; }
+    .upload strong { display: block; font-size: 14px; }
+    .upload span { display: block; margin-top: 5px; color: var(--muted); font-size: 12px; }
+    .upload input { position: absolute; opacity: 0; pointer-events: none; }
+    .control-group { margin-top: 26px; }
+    .control-label { display: flex; justify-content: space-between; align-items: center; gap: 15px; margin-bottom: 11px; font-size: 13px; font-weight: 700; }
+    .control-value { font: 600 11px/1 var(--mono); }
+    .picker-row { display: grid; grid-template-columns: 46px 1fr; gap: 10px; }
+    .color-well { width: 46px; height: 46px; padding: 0; border: 1px solid var(--ink); border-radius: 12px; background: #fff; cursor: pointer; overflow: hidden; }
+    .color-well input { width: 64px; height: 64px; margin: -10px; border: 0; cursor: pointer; }
+    .hex-input { min-width: 0; border: 1px solid var(--ink); border-radius: 12px; padding: 0 13px; background: var(--white); font: 600 13px/1 var(--mono); text-transform: uppercase; }
+    input[type="range"] { width: 100%; height: 24px; margin: 0; appearance: none; background: transparent; cursor: pointer; }
+    input[type="range"]::-webkit-slider-runnable-track { height: 7px; border: 1px solid var(--ink); border-radius: 999px; background: linear-gradient(90deg, var(--lime) var(--fill, 18%), #e7e4dc var(--fill, 18%)); }
+    input[type="range"]::-webkit-slider-thumb { width: 20px; height: 20px; margin-top: -7px; appearance: none; border: 2px solid var(--ink); border-radius: 50%; background: var(--white); }
+    input[type="range"]::-moz-range-track { height: 7px; border: 1px solid var(--ink); border-radius: 999px; background: #e7e4dc; }
+    input[type="range"]::-moz-range-progress { height: 7px; border: 1px solid var(--ink); border-radius: 999px; background: var(--lime); }
+    input[type="range"]::-moz-range-thumb { width: 18px; height: 18px; border: 2px solid var(--ink); border-radius: 50%; background: var(--white); }
+    .toggle-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 22px; }
+    .toggle-copy strong { display: block; font-size: 13px; }
+    .toggle-copy small { color: var(--muted); font-size: 11px; }
+    .switch { position: relative; width: 45px; height: 27px; flex: 0 0 auto; }
+    .switch input { position: absolute; opacity: 0; }
+    .switch span { position: absolute; inset: 0; border: 1px solid var(--ink); border-radius: 999px; background: #ddd9d0; cursor: pointer; }
+    .switch span::after { content: ""; position: absolute; width: 19px; height: 19px; left: 3px; top: 3px; border: 1px solid var(--ink); border-radius: 50%; background: var(--white); transition: transform .15s; }
+    .switch input:checked + span { background: var(--lime); }
+    .switch input:checked + span::after { transform: translateX(18px); }
+    .switch input:focus-visible + span { outline: 3px solid var(--blue); outline-offset: 3px; }
+    .action { width: 100%; min-height: 48px; margin-top: 26px; border: 1px solid var(--ink); border-radius: 999px; color: var(--white); background: var(--ink); font-weight: 760; cursor: pointer; transition: transform .12s; }
+    .action:active { transform: scale(.97); }
+    .action:disabled { cursor: not-allowed; opacity: .35; }
+    .reset { width: 100%; padding: 11px; margin-top: 7px; border: 0; color: var(--muted); background: transparent; font-size: 12px; cursor: pointer; }
+    .stage { position: relative; display: grid; grid-template-rows: auto 1fr; min-width: 0; background: #efede7; }
+    .stage-toolbar { min-height: 58px; padding: 11px 18px; display: flex; align-items: center; justify-content: space-between; gap: 14px; border-bottom: 1px solid var(--line); background: var(--white); }
+    .tabs { display: inline-flex; padding: 3px; border: 1px solid var(--ink); border-radius: 999px; }
+    .tabs button { min-width: 72px; padding: 7px 13px; border: 0; border-radius: 999px; background: transparent; font: 700 11px/1 var(--mono); text-transform: uppercase; cursor: pointer; }
+    .tabs button.active { color: var(--white); background: var(--ink); }
+    .zoom { color: var(--muted); font: 600 11px/1 var(--mono); }
+    .preview-meta { display: flex; align-items: center; gap: 14px; }
+    .transparency-key { display: inline-flex; align-items: center; gap: 7px; font: 650 10px/1 var(--mono); text-transform: uppercase; }
+    .transparency-key i { width: 16px; height: 16px; border: 1px solid var(--ink); background: conic-gradient(#d7d3ca 25%, #fff 0 50%, #d7d3ca 0 75%, #fff 0); background-size: 8px 8px; }
+    .canvas-wrap { position: relative; display: grid; place-items: center; min-height: 560px; padding: 36px; overflow: hidden; background-color: #f4f2ec; background-image: linear-gradient(45deg,#ddd9d0 25%,transparent 25%),linear-gradient(-45deg,#ddd9d0 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#ddd9d0 75%),linear-gradient(-45deg,transparent 75%,#ddd9d0 75%); background-size: 24px 24px; background-position: 0 0,0 12px,12px -12px,-12px 0; }
+    .canvas-frame { position: relative; display: grid; place-items: center; max-width: 100%; max-height: 500px; background: transparent; box-shadow: 0 22px 60px rgba(0,0,0,.14); cursor: crosshair; }
+    canvas { display: block; max-width: 100%; max-height: 500px; width: auto; height: auto; }
+    .canvas-hint { position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%); width: max-content; max-width: calc(100% - 30px); padding: 8px 12px; border: 1px solid var(--ink); border-radius: 999px; background: rgba(255,255,255,.92); font: 650 11px/1.2 var(--mono); pointer-events: none; }
+    .empty-state { position: absolute; inset: 0; display: grid; place-items: center; padding: 30px; text-align: center; background: var(--lilac); }
+    .empty-art { width: min(410px, 76%); aspect-ratio: 1.5; position: relative; margin: 0 auto 24px; border: 2px solid var(--ink); border-radius: 28px; background: var(--blue); overflow: hidden; }
+    .empty-art::before { content: ""; position: absolute; width: 45%; aspect-ratio: 1; left: 14%; bottom: -15%; border: 2px solid var(--ink); border-radius: 50%; background: var(--yellow); }
+    .empty-art::after { content: ""; position: absolute; width: 27%; aspect-ratio: 1; right: 12%; top: 18%; border: 2px solid var(--ink); background: var(--coral); transform: rotate(14deg); }
+    .empty-state strong { display: block; font-size: 22px; letter-spacing: -.03em; }
+    .empty-state span { display: block; margin-top: 8px; color: #3f3a4d; font-size: 14px; }
+    .section { padding: 92px 0; }
+    .section-head { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: end; margin-bottom: 38px; }
+    .section h2 { margin: 0; font-size: clamp(38px, 5vw, 66px); line-height: 1; letter-spacing: -.055em; font-weight: 650; }
+    .section-head p { margin: 0; max-width: 530px; color: var(--muted); font-size: 18px; line-height: 1.55; }
+    .proof-grid { display: grid; grid-template-columns: 1.08fr .92fr 1fr; gap: 16px; }
+    .compare-card { --split: 54%; margin: 0; padding: 12px; border: 2px solid var(--ink); border-radius: 28px; background: var(--white); }
+    .compare-card:nth-child(1) { background: var(--blue); }
+    .compare-card:nth-child(2) { background: var(--yellow); transform: translateY(24px); }
+    .compare-card:nth-child(3) { background: var(--coral); }
+    .compare-visual { position: relative; aspect-ratio: 1.18; overflow: hidden; border: 2px solid var(--ink); border-radius: 18px; background-color: #fff; background-image: linear-gradient(45deg,#d8d5cc 25%,transparent 25%),linear-gradient(-45deg,#d8d5cc 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#d8d5cc 75%),linear-gradient(-45deg,transparent 75%,#d8d5cc 75%); background-size: 20px 20px; background-position: 0 0,0 10px,10px -10px,-10px 0; cursor: ew-resize; touch-action: none; user-select: none; }
+    .compare-layer { position: absolute; inset: 0; }
+    .compare-layer svg { display: block; width: 100%; height: 100%; }
+    .compare-layer.after { z-index: 1; }
+    .compare-layer.before { z-index: 2; clip-path: inset(0 0 0 var(--split)); }
+    .compare-divider { position: absolute; z-index: 3; top: 0; bottom: 0; left: var(--split); width: 2px; transform: translateX(-1px); background: var(--ink); pointer-events: none; }
+    .compare-divider::after { content: "↔"; position: absolute; left: 50%; top: 50%; display: grid; place-items: center; width: 38px; height: 38px; transform: translate(-50%,-50%); border: 2px solid var(--ink); border-radius: 50%; background: var(--lime); font: 800 16px/1 var(--mono); }
+    .compare-badge { position: absolute; z-index: 4; top: 12px; padding: 7px 9px; border: 1px solid var(--ink); border-radius: 999px; color: var(--white); background: var(--ink); font: 800 9px/1 var(--mono); letter-spacing: .08em; }
+    .compare-badge.after { left: 12px; }
+    .compare-badge.before { right: 12px; }
+    .compare-controls { display: flex; align-items: center; gap: 12px; padding: 14px 5px 6px; }
+    .compare-controls span { flex: 0 0 auto; font: 800 9px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+    .compare-controls input { min-width: 0; }
+    .compare-card figcaption { padding: 16px 7px 8px; border-top: 1px solid rgba(21,21,21,.3); }
+    .compare-card h3 { margin: 0 0 7px; font-size: 24px; line-height: 1; letter-spacing: -.04em; }
+    .compare-card p { margin: 0; font-size: 13px; line-height: 1.5; }
+    .compare-meta { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 13px; }
+    .compare-meta span { padding: 6px 8px; border: 1px solid var(--ink); border-radius: 999px; background: rgba(255,255,255,.66); font: 700 9px/1 var(--mono); text-transform: uppercase; }
+    .preset-action { width: 100%; min-height: 42px; margin-top: 14px; border: 1px solid var(--ink); border-radius: 999px; color: var(--white); background: var(--ink); font-weight: 760; cursor: pointer; }
+    .preset-action:hover { color: var(--ink); background: var(--lime); }
+    .decision-strip { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 34px auto 0; }
+    .decision-card { padding: 22px 24px; border: 2px solid var(--ink); border-radius: 22px; background: var(--lime); }
+    .decision-card:last-child { background: var(--lilac); }
+    .decision-card b { font: 800 10px/1 var(--mono); letter-spacing: .09em; text-transform: uppercase; }
+    .decision-card p { margin: 10px 0 0; line-height: 1.55; }
+    .task-reel { padding: 84px 0; overflow: hidden; color: var(--white); background: var(--ink); }
+    .task-reel .section-head { width: min(1240px, calc(100% - 40px)); margin-left: auto; margin-right: auto; }
+    .task-reel .section-head p { color: #c9c9c3; }
+    .task-reel-window { overflow: hidden; -webkit-mask-image: linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent); mask-image: linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent); }
+    .task-reel-track { display: flex; width: max-content; animation: task-reel-scroll 72s linear infinite; }
+    .task-reel-window:hover .task-reel-track { animation-play-state: paused; }
+    .task-reel-set { display: flex; gap: 14px; padding-right: 14px; }
+    .task-chip { width: 260px; min-height: 148px; padding: 20px; border: 1px solid #60605b; border-radius: 22px; color: var(--ink); background: var(--white); }
+    .task-chip:nth-child(4n+1) { background: var(--lime); }
+    .task-chip:nth-child(4n+2) { background: var(--lilac); }
+    .task-chip:nth-child(4n+3) { background: var(--coral); }
+    .task-chip:nth-child(4n+4) { background: var(--blue); }
+    .task-chip b { font: 800 9px/1 var(--mono); letter-spacing: .09em; text-transform: uppercase; }
+    .task-chip h3 { margin: 18px 0 7px; font-size: 21px; line-height: 1.05; letter-spacing: -.035em; }
+    .task-chip p { margin: 0; font-size: 13px; line-height: 1.45; }
+    .task-reel-note { width: min(1240px, calc(100% - 40px)); margin: 22px auto 0; color: #aaa; font: 500 11px/1.5 var(--mono); text-align: center; }
+    @keyframes task-reel-scroll { to { transform: translateX(-50%); } }
+    .proof-note { margin: 38px 0 0; color: var(--muted); font: 500 11px/1.5 var(--mono); text-align: center; }
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .step-card { min-height: 310px; padding: 28px; border: 2px solid var(--ink); border-radius: var(--radius); display: flex; flex-direction: column; justify-content: space-between; }
+    .step-card:nth-child(1) { background: var(--lime); transform: rotate(-.7deg); }
+    .step-card:nth-child(2) { background: var(--lilac); transform: rotate(.5deg); }
+    .step-card:nth-child(3) { background: var(--coral); transform: rotate(-.25deg); }
+    .step-card .num { font: 700 12px/1 var(--mono); }
+    .step-card h3 { margin: 0 0 10px; font-size: 28px; letter-spacing: -.04em; }
+    .step-card p { margin: 0; line-height: 1.55; }
+    .privacy-panel { display: grid; grid-template-columns: 1.1fr .9fr; min-height: 520px; border-radius: 32px; overflow: hidden; background: var(--ink); color: var(--white); }
+    .privacy-copy { padding: clamp(40px, 6vw, 78px); }
+    .privacy-copy h2 { max-width: 580px; }
+    .privacy-copy p { max-width: 570px; margin: 24px 0 0; color: #c9c9c3; font-size: 18px; line-height: 1.6; }
+    .proof-list { display: grid; gap: 13px; margin-top: 30px; }
+    .proof-list div { display: flex; align-items: center; gap: 12px; font: 600 13px/1.4 var(--mono); }
+    .proof-list b { display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; color: var(--ink); background: var(--lime); }
+    .privacy-art { position: relative; min-height: 430px; background: var(--blue); overflow: hidden; }
+    .privacy-art .file { position: absolute; width: 250px; aspect-ratio: .78; left: 50%; top: 50%; transform: translate(-50%,-50%) rotate(6deg); border: 2px solid var(--ink); border-radius: 22px; background: var(--white); box-shadow: 14px 14px 0 var(--coral); }
+    .privacy-art .file::before { content: "LOCAL"; position: absolute; left: 26px; top: 28px; font: 800 13px/1 var(--mono); letter-spacing: .1em; }
+    .privacy-art .file::after { content: ""; position: absolute; left: 26px; right: 26px; bottom: 34px; height: 45%; border-radius: 14px; background: repeating-linear-gradient(0deg,var(--line) 0 2px,transparent 2px 17px); }
+    .privacy-art .lock { position: absolute; width: 84px; height: 72px; left: calc(50% - 42px); top: calc(50% - 25px); border: 2px solid var(--ink); border-radius: 18px; background: var(--lime); }
+    .privacy-art .lock::before { content: ""; position: absolute; width: 42px; height: 42px; left: 19px; top: -32px; border: 8px solid var(--ink); border-bottom: 0; border-radius: 28px 28px 0 0; }
+    .content-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+    .content-card { padding: 32px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--white); }
+    .content-card h3 { margin: 0 0 14px; font-size: 25px; letter-spacing: -.035em; }
+    .content-card p { margin: 0; color: var(--muted); line-height: 1.65; }
+    .content-card p + p { margin-top: 12px; }
+    .use-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 24px; }
+    .use-card { min-height: 205px; padding: 22px; border: 2px solid var(--ink); border-radius: 22px; display: flex; flex-direction: column; justify-content: space-between; }
+    .use-card:nth-child(1) { background: var(--blue); }
+    .use-card:nth-child(2) { background: var(--yellow); }
+    .use-card:nth-child(3) { background: var(--mint); }
+    .use-card:nth-child(4) { background: var(--lilac); }
+    .use-card b { font: 800 10px/1 var(--mono); letter-spacing: .08em; }
+    .use-card h3 { margin: 0 0 8px; font-size: 21px; letter-spacing: -.035em; }
+    .use-card p { margin: 0; font-size: 14px; line-height: 1.5; }
+    .faq { padding: clamp(34px, 6vw, 72px); border: 2px solid var(--ink); border-radius: 32px; background: var(--lime); }
+    .faq h2 { margin-bottom: 28px; }
+    details { border-top: 1px solid rgba(21,21,21,.35); }
+    details:last-child { border-bottom: 1px solid rgba(21,21,21,.35); }
+    summary { padding: 20px 0; list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 20px; font-size: 18px; font-weight: 700; cursor: pointer; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; width: 30px; height: 30px; display: grid; place-items: center; border: 1px solid var(--ink); border-radius: 50%; font: 700 18px/1 var(--mono); }
+    details[open] summary::after { content: "−"; }
+    details p { max-width: 770px; margin: -4px 0 20px; line-height: 1.65; }
+    footer { margin-top: 92px; padding: 36px 0 44px; border-top: 1px solid var(--line); }
+    .footer-row { display: flex; justify-content: space-between; gap: 30px; color: var(--muted); font: 500 12px/1.5 var(--mono); }
+    .footer-links { display: flex; gap: 20px; }
+    .toast { position: fixed; left: 50%; bottom: 24px; z-index: 20; transform: translate(-50%, 120px); padding: 13px 18px; border: 1px solid var(--ink); border-radius: 999px; color: var(--white); background: var(--ink); font: 600 12px/1 var(--mono); transition: transform .25s; }
+    .toast.show { transform: translate(-50%, 0); }
+    @media (max-width: 880px) {
+      .nav-links a:not(.privacy-chip) { display: none; }
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-art { min-height: 420px; }
+      .hero-compare-card { min-height: 420px; }
+      .editor { grid-template-columns: 1fr; }
+      .controls { border-right: 0; border-bottom: 1px solid var(--line); }
+      .stage { min-height: 520px; }
+      .canvas-wrap { min-height: 460px; }
+      .section-head, .privacy-panel { grid-template-columns: 1fr; }
+      .section-head { gap: 20px; }
+      .steps { grid-template-columns: 1fr; }
+      .step-card { min-height: 250px; transform: none !important; }
+      .proof-grid { grid-template-columns: 1fr 1fr; }
+      .compare-card:nth-child(2) { transform: none; }
+      .compare-card:nth-child(3) { grid-column: 1 / -1; }
+      .use-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 620px) {
+      .shell { width: min(100% - 24px, 1240px); }
+      .nav { min-height: 64px; }
+      .brand { font-size: 14px; }
+      .brand-mark { width: 28px; height: 28px; }
+      .privacy-chip { padding: 7px 10px; font-size: 9px; }
+      .marquee-track { justify-content: flex-start; min-width: max-content; padding: 0 18px; }
+      .marquee-track span:nth-of-type(even) { display: none; }
+      .hero { padding: 48px 0 38px; gap: 34px; }
+      h1 { font-size: clamp(44px, 14vw, 68px); }
+      .hero-copy { font-size: 16px; }
+      .hero-actions { align-items: flex-start; flex-direction: column; }
+      .hero-art { min-height: 340px; border-radius: 100px 20px 100px 20px; }
+      .hero-compare-card { min-height: 360px; border-radius: 100px 20px 100px 20px; }
+      .hero-compare-visual { inset: 16px 16px 74px; }
+      .hero-compare-control { left: 18px; right: 18px; }
+      .art-poster { width: 205px; }
+      .art-poster .word { font-size: 40px; }
+      .swatch { opacity: .9; }
+      .swatch-a { width: 58px; height: 58px; left: 12px; top: 25px; }
+      .swatch-b { width: 50px; height: 50px; right: 12px; bottom: 26px; }
+      .swatch-c { width: 42px; height: 85px; right: 10px; top: 92px; }
+      .swatch-d { width: 46px; height: 46px; left: 18px; bottom: 22px; }
+      .quick-answer { grid-template-columns: 1fr; gap: 8px; padding: 19px; }
+      .workspace { border-radius: 22px; box-shadow: 5px 5px 0 var(--lilac); }
+      .workspace-state { display: none; }
+      .controls { padding: 20px; }
+      .canvas-wrap { min-height: 360px; padding: 18px; }
+      .stage-toolbar { padding: 10px 12px; }
+      .section { padding: 68px 0; }
+      .proof-grid { grid-template-columns: 1fr; }
+      .compare-card:nth-child(3) { grid-column: auto; }
+      .content-grid { grid-template-columns: 1fr; }
+      .use-grid { grid-template-columns: 1fr; }
+      .decision-strip { grid-template-columns: 1fr; }
+      .content-card { padding: 24px; }
+      .privacy-copy { padding: 34px 26px; }
+      .privacy-art { min-height: 360px; }
+      .footer-row { flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .marquee-track, .task-reel-track { animation: none; }
+      .task-reel-window { overflow-x: auto; -webkit-mask-image: none; mask-image: none; }
+    }
+  </style>
+  <link rel="stylesheet" href="/feedback.css">
+</head>
+<body>
+  <header class="shell nav">
+    <a class="brand" href="/" aria-label="Image Color Remover home"><span class="brand-mark" aria-hidden="true"></span><span>Image Color Remover</span></a>
+    <nav class="nav-links" aria-label="Main navigation"><a href="#how">How it works</a><a href="#guide">Color guide</a><a href="#faq">FAQ</a><span class="privacy-chip"><i class="privacy-dot"></i> Runs locally</span></nav>
+  </header>
+  <div class="marquee" aria-hidden="true"><div class="marquee-track"><div class="marquee-set"><span>Pick a pixel</span><b>●</b><span>Remove the color</span><b>✦</b><span>Adjust tolerance</span><b>●</b><span>Export transparent PNG</span><b>✦</b><span>100% local</span><b>●</b></div><div class="marquee-set"><span>Pick a pixel</span><b>●</b><span>Remove the color</span><b>✦</b><span>Adjust tolerance</span><b>●</b><span>Export transparent PNG</span><b>✦</b><span>100% local</span><b>●</b></div></div></div>
+
+  <main>
+    <section class="shell hero">
+      <div class="hero-copy-block"><p class="eyebrow">Free logo color remover</p><h1>Remove color<br>from a <span class="highlight">logo.</span></h1><p class="hero-copy">Clear one logo background or unwanted fill color, preserve crisp edges, and download a transparent PNG without uploading your design.</p><div class="hero-actions"><a class="hero-cta" href="#tool-heading">Try the live tool ↓</a><div class="hero-notes" aria-label="Product benefits"><span>No sign-up</span><span>No upload</span><span>Pixel preview</span></div></div></div>
+      <div class="hero-compare-card">
+        <div class="hero-compare-visual">
+          <div class="hero-compare-layer before"><svg viewBox="0 0 560 470" role="img" aria-label="Logo on green before removing its background color"><rect width="560" height="470" fill="#35a86b"/><circle cx="280" cy="174" r="72" fill="none" stroke="#151515" stroke-width="20"/><path d="M238 174h84M280 132v84" stroke="#151515" stroke-width="20" stroke-linecap="round"/><text x="280" y="306" text-anchor="middle" fill="#151515" font-family="system-ui,sans-serif" font-size="54" font-weight="800" letter-spacing="5">NORTH</text><text x="280" y="344" text-anchor="middle" fill="#151515" font-family="monospace" font-size="16" font-weight="700" letter-spacing="4">STUDIO GOODS</text></svg></div>
+          <div class="hero-compare-layer after" aria-hidden="true"><svg viewBox="0 0 560 470"><circle cx="280" cy="174" r="72" fill="none" stroke="#151515" stroke-width="20"/><path d="M238 174h84M280 132v84" stroke="#151515" stroke-width="20" stroke-linecap="round"/><text x="280" y="306" text-anchor="middle" fill="#151515" font-family="system-ui,sans-serif" font-size="54" font-weight="800" letter-spacing="5">NORTH</text><text x="280" y="344" text-anchor="middle" fill="#151515" font-family="monospace" font-size="16" font-weight="700" letter-spacing="4">STUDIO GOODS</text></svg></div>
+          <span class="hero-compare-label after">AFTER</span><span class="hero-compare-label before">BEFORE</span><i class="hero-divider" aria-hidden="true"></i>
+        </div>
+        <label class="hero-compare-control"><span>Drag to compare</span><input id="hero-compare-range" type="range" min="5" max="95" value="52" aria-label="Compare the logo before and after color removal"></label>
+      </div>
+    </section>
+
+    <section class="shell quick-answer" aria-labelledby="quick-answer-heading"><h2 id="quick-answer-heading">How to remove a color from a logo</h2><p>Open the logo, click the unwanted canvas color, keep tolerance low for exact fills, inspect the checkerboard, and download the transparent PNG.</p></section>
+
+    <section class="shell workspace" aria-labelledby="tool-heading">
+      <div class="workspace-bar"><div class="workspace-title"><i></i><h2 id="tool-heading">Remove Color From Logo Online tool</h2></div><span class="workspace-state" id="workspace-state">Demo image ready</span></div>
+      <div class="editor">
+        <aside class="controls">
+          <div class="step"><b>1</b> Open your image</div>
+          <label class="upload" id="drop-zone" for="file-input" tabindex="-1">
+            <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 16V4m0 0L7 9m5-5 5 5M5 14v4a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4"/></svg><strong>Choose or drop an image</strong><span>PNG, JPG or WebP · up to 25 MB</span></div>
+            <input id="file-input" type="file" accept="image/png,image/jpeg,image/webp">
+          </label>
+
+          <div class="control-group">
+            <div class="step"><b>2</b> Choose a color</div>
+            <div class="picker-row"><label class="color-well" title="Choose a color"><input id="color-picker" type="color" value="#ef6b5b" aria-label="Color to remove"></label><input class="hex-input" id="hex-input" value="#EF6B5B" maxlength="7" aria-label="Hex color to remove"></div>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label" for="tolerance"><span>Color tolerance</span><span class="control-value" id="tolerance-value">18</span></label>
+            <input id="tolerance" type="range" min="0" max="100" value="18">
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="softness"><span>Edge softness</span><span class="control-value" id="softness-value">8</span></label>
+            <input id="softness" type="range" min="0" max="50" value="8">
+          </div>
+          <div class="toggle-row"><div class="toggle-copy"><strong>Preserve shadows</strong><small>Reduce color spill on dark pixels</small></div><label class="switch"><input id="preserve" type="checkbox" checked><span></span></label></div>
+          <button class="action" id="download" type="button">Download transparent PNG</button>
+          <button class="reset" id="reset" type="button">Reset demo image</button>
+        </aside>
+
+        <div class="stage">
+          <div class="stage-toolbar"><div class="tabs" role="tablist" aria-label="Preview mode"><button class="active" data-mode="result" role="tab" aria-selected="true">Result</button><button data-mode="original" role="tab" aria-selected="false">Original</button></div><div class="preview-meta"><span class="transparency-key"><i></i> transparent</span><span class="zoom" id="image-size">1200 × 800</span></div></div>
+          <div class="canvas-wrap">
+            <div class="canvas-frame" id="canvas-frame"><canvas id="canvas" width="1200" height="800" aria-label="Image color removal preview"></canvas><span class="canvas-hint">Click the image to sample a color</span></div>
+            <div class="empty-state" id="empty-state" hidden><div><div class="empty-art" aria-hidden="true"></div><strong>Your image, minus one color.</strong><span>Drop a PNG, JPG or WebP to begin.</span></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="shell decision-strip" aria-label="Choose between color removal and AI background removal">
+      <article class="decision-card"><b>Use this color remover</b><p>For a solid background, logo, icon, signature, green screen, or simple flat graphic where you can pick the unwanted color.</p></article>
+      <article class="decision-card"><b>Use an AI background remover</b><p>For complex photos, hair, fur, busy scenes, or a background that shares important colors with the subject.</p></article>
+    </section>
+
+
+    <section class="shell section task-guide" aria-labelledby="remove-color-from-logo-guide-heading">
+      <div class="section-head"><h2 id="remove-color-from-logo-guide-heading">Pick a known color.<br>Keep control.</h2><p>Use this page for logo files with a flat color canvas or one unwanted fill. It gives you direct control over the exact pixels that become transparent.</p></div>
+      <div class="content-grid">
+        <article class="content-card"><h3>What this tool changes</h3><p>Image Color Remover compares every pixel with the color you select. Pixels inside the selected range become transparent in the downloaded PNG. Start with a narrow tolerance, then widen it only when nearby shades need to be included.</p><p>Because the processing happens in your browser, the source image is not uploaded, stored, or edited in place. The download is a new PNG and the original remains untouched.</p></article>
+        <article class="content-card"><h3>How to get a clean result</h3><p>Click a clean representative area of the unwanted color. Keep tolerance low for logos, icons, diagrams, and exact digital fills. For anti-aliased edges or uneven lighting, increase tolerance gradually while watching the checkerboard.</p><p>Use a small amount of edge softness only when a hard outline remains. If an important area begins to disappear, lower the tolerance or sample a different pixel.</p></article>
+        <article class="content-card"><h3>When this is the right method</h3><p>Remove the solid rectangle behind a logo before using it on a website, document, or presentation.</p><p>This method is deterministic: it follows the color range you choose instead of guessing which object is the subject. That makes it useful for artwork and flat backgrounds where you need predictable pixel-level control.</p></article>
+        <article class="content-card"><h3>Important limitation</h3><p>If the same color appears inside the logo artwork, it can disappear too. Complex logos with gradients, shadows, and textured backgrounds may need a layered editor or vector source file.</p><p>Export as PNG to preserve transparency. JPEG cannot store transparent pixels.</p></article>
+      </div>
+      <div class="quick-answer"><h2>Quick workflow</h2><p><strong>Open the image → click the unwanted color → adjust tolerance → inspect the transparent preview → download PNG.</strong> For pale edges after removal, try the <a href="/remove-white-halo-from-png/">white halo cleaner</a>.</p></div>
+    </section>
+    <section class="shell section" aria-labelledby="remove-color-from-logo-examples-heading">
+      <div class="section-head"><h2 id="remove-color-from-logo-examples-heading">Focused jobs.<br>One chosen color.</h2><p>These examples work when the unwanted area is mostly one flat or consistently shaded color.</p></div>
+      <div class="use-grid">
+        <article class="use-card"><b>01 / BRAND</b><div><h3>Clear a colored logo canvas</h3><p>Remove the solid rectangle behind a logo before using it on a website, document, or presentation.</p></div></article>
+        <article class="use-card"><b>02 / ICON</b><div><h3>Remove one logo fill</h3><p>Target a single unwanted fill color in a simple icon or mark while keeping the rest of the logo.</p></div></article>
+        <article class="use-card"><b>03 / EXPORT</b><div><h3>Prepare a transparent PNG</h3><p>Convert an existing logo export into a transparent PNG for flexible reuse.</p></div></article>
+        <article class="use-card"><b>04 / PIXEL</b><div><h3>Preserve crisp graphic edges</h3><p>Start with tolerance near zero and no softness for logos made with exact digital colors.</p></div></article>
+      </div>
+    </section>
+    <section class="shell section" aria-labelledby="remove-color-from-logo-steps-heading">
+      <div class="section-head"><h2 id="remove-color-from-logo-steps-heading">Make one color<br>transparent.</h2><p>Small adjustments are safer than a broad threshold, especially near important edges.</p></div>
+      <div class="steps-grid">
+        <article class="step-card"><b>1</b><h3>Open the source image</h3><p>Choose PNG, JPG, JPEG, or WebP. Keep the original file as your backup.</p></article>
+        <article class="step-card"><b>2</b><h3>Sample the unwanted color</h3><p>Click a clear pixel, or enter a six-digit HEX value when you know the exact color.</p></article>
+        <article class="step-card"><b>3</b><h3>Tune the matching range</h3><p>Raise tolerance only enough to catch related shades; add slight softness for anti-aliased edges.</p></article>
+        <article class="step-card"><b>4</b><h3>Download transparent PNG</h3><p>Check the result against the checkerboard, then save a new PNG with transparency preserved.</p></article>
+      </div>
+    </section>
+
+    <section class="shell section" id="faq">
+      <div class="faq"><p class="eyebrow">Common questions</p><h2>Remove Color From Logo Online FAQ</h2>
+        <details><summary>Can I make a logo background transparent?</summary><p>Yes. Select the flat background color around the logo and export the result as a transparent PNG.</p></details>
+        <details><summary>Will the logo itself stay unchanged?</summary><p>The tool changes pixels matching the selected range. Use low tolerance when the logo contains a similar color you want to keep.</p></details>
+        <details><summary>Does this work with JPG logos?</summary><p>Yes, but the download is PNG because PNG is required to keep the new transparent background.</p></details>
+      </div>
+    </section>
+    <section class="shell section"><h2>Still seeing white edges?</h2><p>For an already transparent PNG with pale fringes, try the <a href="/remove-white-halo-from-png/">white halo cleaner</a>. Compare edge colors against dark and light backgrounds before downloading.</p></section>
+  </main>
+
+  <footer class="shell"><div class="footer-row"><span>© 2026 Image Color Remover · Built for one focused job.</span><div class="footer-links"><a href="/remove-color-from-png/">PNG color remover</a><a href="/remove-white-background-from-image/">White background remover</a><a href="#faq">FAQ</a><a href="mailto:hello@imagecolorremover.com">Contact</a></div></div></footer>
+  <div class="toast" id="toast" role="status"></div>
+
+  <script src="/color-removal.js"></script>
+  <script>
+    const canvas = document.querySelector('#canvas');
+    const ctx = canvas.getContext('2d', { willReadFrequently: true });
+    const fileInput = document.querySelector('#file-input');
+    const dropZone = document.querySelector('#drop-zone');
+    const colorPicker = document.querySelector('#color-picker');
+    const hexInput = document.querySelector('#hex-input');
+    const tolerance = document.querySelector('#tolerance');
+    const softness = document.querySelector('#softness');
+    const preserve = document.querySelector('#preserve');
+    const download = document.querySelector('#download');
+    const toast = document.querySelector('#toast');
+    const stateLabel = document.querySelector('#workspace-state');
+    const imageSize = document.querySelector('#image-size');
+    let sourcePixels = null;
+    let mode = 'result';
+    let sourceName = 'color-removed';
+    let renderFrame = 0;
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add('show');
+      clearTimeout(showToast.timer);
+      showToast.timer = setTimeout(() => toast.classList.remove('show'), 2200);
+    }
+
+    function hexToRgb(hex) {
+      const value = hex.replace('#', '');
+      if (!/^[0-9a-f]{6}$/i.test(value)) return null;
+      return [parseInt(value.slice(0,2),16), parseInt(value.slice(2,4),16), parseInt(value.slice(4,6),16)];
+    }
+
+    function rgbToHex(r, g, b) {
+      return '#' + [r,g,b].map(v => Math.round(v).toString(16).padStart(2,'0')).join('').toUpperCase();
+    }
+
+    function updateRangeFill(input) {
+      const value = (Number(input.value) - Number(input.min)) / (Number(input.max) - Number(input.min)) * 100;
+      input.style.setProperty('--fill', `${value}%`);
+    }
+
+    function render() {
+      if (!sourcePixels) return;
+      if (mode === 'original') {
+        ctx.putImageData(sourcePixels, 0, 0);
+        return;
+      }
+      const target = hexToRgb(colorPicker.value);
+      const output = new ImageData(
+        ImageColorCore.removeColorPixels(sourcePixels.data, target, {
+          tolerance: tolerance.value,
+          softness: softness.value,
+          preserveShadows: preserve.checked
+        }),
+        sourcePixels.width,
+        sourcePixels.height
+      );
+      ctx.putImageData(output, 0, 0);
+    }
+
+    function scheduleRender() {
+      if (renderFrame) return;
+      renderFrame = requestAnimationFrame(() => {
+        renderFrame = 0;
+        render();
+      });
+    }
+
+    function roundedRect(context, x, y, width, height, radius) {
+      if (typeof context.roundRect === 'function') {
+        context.roundRect(x, y, width, height, radius);
+        return;
+      }
+      const r = Math.min(radius, width / 2, height / 2);
+      context.moveTo(x + r, y);
+      context.arcTo(x + width, y, x + width, y + height, r);
+      context.arcTo(x + width, y + height, x, y + height, r);
+      context.arcTo(x, y + height, x, y, r);
+      context.arcTo(x, y, x + width, y, r);
+      context.closePath();
+    }
+
+    function setPresetControls(color, toleranceValue, softnessValue) {
+      colorPicker.value = color.toLowerCase();
+      hexInput.value = color.toUpperCase();
+      tolerance.value = toleranceValue;
+      softness.value = softnessValue;
+      document.querySelector('#tolerance-value').textContent = toleranceValue;
+      document.querySelector('#softness-value').textContent = softnessValue;
+      updateRangeFill(tolerance);
+      updateRangeFill(softness);
+      preserve.checked = true;
+      mode = 'result';
+      setActiveTab();
+    }
+
+    function drawPreset(name = 'logo') {
+      canvas.width = 1200;
+      canvas.height = 800;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      if (name === 'white-logo') {
+        setPresetControls('#ffffff', 18, 6);
+        ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, 1200, 800);
+        ctx.fillStyle = '#ff8d78'; ctx.beginPath(); ctx.arc(600,285,145,0,Math.PI*2); ctx.fill();
+        ctx.strokeStyle = '#151515'; ctx.lineWidth = 28; ctx.beginPath(); ctx.arc(600,285,145,0,Math.PI*2); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(520,285); ctx.lineTo(680,285); ctx.moveTo(600,205); ctx.lineTo(600,365); ctx.stroke();
+        ctx.fillStyle = '#151515'; ctx.font = '800 92px system-ui'; ctx.textAlign = 'center'; ctx.fillText('CLEAR WHITE',600,560);
+        ctx.font = '700 26px ui-monospace'; ctx.fillText('BACKGROUND PRESET',600,615); ctx.textAlign = 'start';
+        sourceName = 'white-logo-background-removed';
+        stateLabel.textContent = 'White logo background preset loaded';
+      } else if (name === 'signature') {
+        setPresetControls('#fff2cf', 20, 7);
+        ctx.fillStyle = '#fff2cf'; ctx.fillRect(0, 0, 1200, 800);
+        ctx.strokeStyle = '#255dc5'; ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.lineWidth = 28;
+        ctx.beginPath(); ctx.moveTo(145,500); ctx.bezierCurveTo(270,205,310,680,430,360); ctx.bezierCurveTo(485,210,480,590,585,410); ctx.bezierCurveTo(675,255,690,625,820,360); ctx.bezierCurveTo(880,240,890,570,1040,420); ctx.stroke();
+        ctx.lineWidth = 15; ctx.beginPath(); ctx.moveTo(190,590); ctx.bezierCurveTo(470,535,730,555,1010,565); ctx.stroke();
+        sourceName = 'signature-paper-removed';
+        stateLabel.textContent = 'Signature preset loaded';
+      } else if (name === 'studio') {
+        setPresetControls('#ff8d78', 16, 8);
+        ctx.fillStyle = '#ff8d78'; ctx.fillRect(0, 0, 1200, 800);
+        ctx.fillStyle = 'rgba(80,30,30,.22)'; ctx.beginPath(); ctx.ellipse(600,680,220,42,0,0,Math.PI*2); ctx.fill();
+        ctx.fillStyle = '#255dc5'; ctx.strokeStyle = '#151515'; ctx.lineWidth = 12; ctx.beginPath(); roundedRect(ctx,465,215,270,420,72); ctx.fill(); ctx.stroke();
+        ctx.fillStyle = '#dfff70'; ctx.beginPath(); roundedRect(ctx,535,115,130,145,22); ctx.fill(); ctx.stroke();
+        ctx.fillStyle = '#f7f5ef'; ctx.beginPath(); roundedRect(ctx,505,360,190,145,16); ctx.fill(); ctx.stroke();
+        ctx.fillStyle = '#151515'; ctx.font = '700 30px ui-monospace'; ctx.textAlign = 'center'; ctx.fillText('SOLID',600,425); ctx.fillText('COLOR',600,466); ctx.textAlign = 'start';
+        sourceName = 'studio-backdrop-removed';
+        stateLabel.textContent = 'Studio backdrop preset loaded';
+      } else {
+        setPresetControls('#35a86b', 12, 4);
+        ctx.fillStyle = '#35a86b'; ctx.fillRect(0,0,1200,800);
+        ctx.strokeStyle = '#171717'; ctx.lineWidth = 30; ctx.beginPath(); ctx.arc(600,300,130,0,Math.PI*2); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(525,300); ctx.lineTo(675,300); ctx.moveTo(600,225); ctx.lineTo(600,375); ctx.stroke();
+        ctx.fillStyle = '#171717'; ctx.font = '800 100px system-ui'; ctx.textAlign = 'center'; ctx.fillText('NORTH',600,535);
+        ctx.font = '700 27px ui-monospace'; ctx.fillText('STUDIO GOODS',600,590); ctx.textAlign = 'start';
+        sourceName = 'logo-background-removed';
+        stateLabel.textContent = 'Logo preset loaded';
+      }
+      sourcePixels = ctx.getImageData(0,0,canvas.width,canvas.height);
+      imageSize.textContent = '1200 × 800';
+      render();
+    }
+
+    function drawDemo() { drawPreset('logo'); }
+
+    function loadFile(file) {
+      const supportedMime = file && /^image\/(png|jpeg|webp)$/.test(file.type);
+      const supportedExtension = file && !file.type && /\.(png|jpe?g|webp)$/i.test(file.name);
+      if (!file || (!supportedMime && !supportedExtension)) { showToast('Choose a PNG, JPG or WebP image.'); return; }
+      if (file.size > 25 * 1024 * 1024) { showToast('Please choose an image under 25 MB.'); return; }
+      const img = new Image();
+      const url = URL.createObjectURL(file);
+      img.onload = () => {
+        const maxPixels = matchMedia('(max-width: 768px)').matches ? 10_000_000 : 18_000_000;
+        let width = img.naturalWidth, height = img.naturalHeight;
+        if (width * height > maxPixels) {
+          const scale = Math.sqrt(maxPixels / (width * height));
+          width = Math.round(width * scale); height = Math.round(height * scale);
+          showToast('Large image resized for browser memory.');
+        }
+        canvas.width = width; canvas.height = height;
+        ctx.clearRect(0,0,width,height); ctx.drawImage(img,0,0,width,height);
+        sourcePixels = ctx.getImageData(0,0,width,height);
+        sourceName = file.name.replace(/\.[^.]+$/, '') || 'color-removed';
+        imageSize.textContent = `${width} × ${height}`;
+        stateLabel.textContent = file.name;
+        render(); URL.revokeObjectURL(url);
+      };
+      img.onerror = () => { URL.revokeObjectURL(url); showToast('This image could not be opened.'); };
+      img.src = url;
+    }
+
+    canvas.addEventListener('click', (event) => {
+      if (!sourcePixels) return;
+      const rect = canvas.getBoundingClientRect();
+      const x = Math.max(0, Math.min(canvas.width - 1, Math.floor((event.clientX - rect.left) * canvas.width / rect.width)));
+      const y = Math.max(0, Math.min(canvas.height - 1, Math.floor((event.clientY - rect.top) * canvas.height / rect.height)));
+      const i = (y * sourcePixels.width + x) * 4;
+      const hex = rgbToHex(sourcePixels.data[i], sourcePixels.data[i+1], sourcePixels.data[i+2]);
+      colorPicker.value = hex.toLowerCase(); hexInput.value = hex;
+      mode = 'result'; setActiveTab(); render(); showToast(`Selected ${hex}`);
+    });
+
+    const tabButtons = [...document.querySelectorAll('.tabs button')];
+    function setActiveTab(focusActive = false) { tabButtons.forEach(button => { const active = button.dataset.mode === mode; button.classList.toggle('active', active); button.setAttribute('aria-selected', String(active)); button.tabIndex = active ? 0 : -1; if (active && focusActive) button.focus(); }); }
+    tabButtons.forEach(button => {
+      button.addEventListener('click', () => { mode = button.dataset.mode; setActiveTab(); render(); });
+      button.addEventListener('keydown', (event) => {
+        if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+        event.preventDefault();
+        const index = tabButtons.indexOf(button);
+        const nextIndex = event.key === 'Home' ? 0 : event.key === 'End' ? tabButtons.length - 1 : event.key === 'ArrowRight' ? (index + 1) % tabButtons.length : (index - 1 + tabButtons.length) % tabButtons.length;
+        mode = tabButtons[nextIndex].dataset.mode;
+        setActiveTab(true);
+        render();
+      });
+    });
+    [tolerance, softness].forEach(input => { updateRangeFill(input); input.addEventListener('input', () => { updateRangeFill(input); document.querySelector(`#${input.id}-value`).textContent = input.value; mode='result'; setActiveTab(); scheduleRender(); }); });
+    colorPicker.addEventListener('input', () => { hexInput.value = colorPicker.value.toUpperCase(); mode='result'; setActiveTab(); render(); });
+    hexInput.addEventListener('change', () => { const rgb = hexToRgb(hexInput.value); if (!rgb) { hexInput.value = colorPicker.value.toUpperCase(); showToast('Enter a six-digit HEX color.'); return; } colorPicker.value = rgbToHex(...rgb).toLowerCase(); hexInput.value = colorPicker.value.toUpperCase(); render(); });
+    preserve.addEventListener('change', render);
+    fileInput.addEventListener('change', () => loadFile(fileInput.files[0]));
+    ['dragenter','dragover'].forEach(type => dropZone.addEventListener(type, event => { event.preventDefault(); dropZone.classList.add('is-over'); }));
+    ['dragleave','drop'].forEach(type => dropZone.addEventListener(type, event => { event.preventDefault(); dropZone.classList.remove('is-over'); }));
+    dropZone.addEventListener('drop', event => loadFile(event.dataTransfer.files[0]));
+    download.addEventListener('click', () => {
+      if (!sourcePixels) return;
+      const oldMode = mode;
+      mode = 'result';
+      render();
+      download.disabled = true;
+      canvas.toBlob((blob) => {
+        if (!blob) {
+          download.disabled = false;
+          mode = oldMode;
+          render();
+          showToast('This browser could not create the PNG.');
+          return;
+        }
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.download = `${sourceName}-transparent.png`;
+        link.href = url;
+        link.click();
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
+        download.disabled = false;
+        mode = oldMode;
+        render();
+        showToast('Transparent PNG downloaded.');
+      }, 'image/png');
+    });
+    function bindDirectComparison(container, visual, range) {
+      const syncFromRange = () => {
+        container.style.setProperty('--split', `${range.value}%`);
+        updateRangeFill(range);
+      };
+      const syncFromPointer = (event) => {
+        const rect = visual.getBoundingClientRect();
+        const percent = Math.max(Number(range.min), Math.min(Number(range.max), (event.clientX - rect.left) / rect.width * 100));
+        range.value = String(Math.round(percent));
+        syncFromRange();
+      };
+      visual.addEventListener('pointerdown', (event) => {
+        if (event.button !== 0) return;
+        event.preventDefault();
+        visual.setPointerCapture(event.pointerId);
+        syncFromPointer(event);
+      });
+      visual.addEventListener('pointermove', (event) => {
+        if (!visual.hasPointerCapture(event.pointerId)) return;
+        event.preventDefault();
+        syncFromPointer(event);
+      });
+      const stopDragging = (event) => {
+        if (visual.hasPointerCapture(event.pointerId)) visual.releasePointerCapture(event.pointerId);
+      };
+      visual.addEventListener('pointerup', stopDragging);
+      visual.addEventListener('pointercancel', stopDragging);
+      range.addEventListener('input', syncFromRange);
+      syncFromRange();
+    }
+    document.querySelectorAll('.compare-card').forEach(card => bindDirectComparison(card, card.querySelector('.compare-visual'), card.querySelector('.compare-range')));
+    bindDirectComparison(document.querySelector('.hero-compare-card'), document.querySelector('.hero-compare-visual'), document.querySelector('#hero-compare-range'));
+    document.querySelectorAll('.preset-action').forEach(button => {
+      button.addEventListener('click', () => {
+        fileInput.value = '';
+        drawPreset(button.dataset.preset);
+        document.querySelector('.workspace').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        setTimeout(() => dropZone.focus(), 450);
+        showToast(`${button.dataset.preset[0].toUpperCase()}${button.dataset.preset.slice(1)} preset loaded.`);
+      });
+    });
+    const taskReelTrack = document.querySelector('.task-reel-track');
+    const taskReelSet = document.querySelector('.task-reel-set');
+    if (taskReelTrack && taskReelSet) {
+      const duplicateTaskSet = taskReelSet.cloneNode(true);
+      duplicateTaskSet.setAttribute('aria-hidden', 'true');
+      taskReelTrack.append(duplicateTaskSet);
+    }
+    document.querySelector('#reset').addEventListener('click', () => { fileInput.value=''; tolerance.value=18; softness.value=8; preserve.checked=true; colorPicker.value='#ef6b5b'; hexInput.value='#EF6B5B'; document.querySelector('#tolerance-value').textContent='18'; document.querySelector('#softness-value').textContent='8'; updateRangeFill(tolerance); updateRangeFill(softness); mode='result'; setActiveTab(); drawDemo(); });
+    drawDemo();
+  </script>
+  <script src="/feedback.js" defer></script>
+</body>
+</html>

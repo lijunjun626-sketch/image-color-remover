@@ -2,6 +2,71 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 
 const source = await readFile('index.html', 'utf8');
 
+function createColorTaskPage({
+  path,
+  title,
+  description,
+  heading,
+  eyebrow,
+  hero,
+  quickTitle,
+  quick,
+  accent,
+  focus,
+  uses,
+  limits,
+  related,
+  faq,
+}) {
+  const useCards = uses
+    .map(
+      ([label, name, text], index) => `
+        <article class="use-card"><b>0${index + 1} / ${label}</b><div><h3>${name}</h3><p>${text}</p></div></article>`
+    )
+    .join('');
+  const faqTitle = `${title.split(' — ')[0]} FAQ`;
+
+  return {
+    path,
+    title,
+    description,
+    heading,
+    eyebrow,
+    hero,
+    quickTitle,
+    quick,
+    toolTitle: title.split(' — ')[0] + ' tool',
+    accent,
+    content: `
+    <section class="shell section task-guide" aria-labelledby="${path}-guide-heading">
+      <div class="section-head"><h2 id="${path}-guide-heading">Pick a known color.<br>Keep control.</h2><p>${focus}</p></div>
+      <div class="content-grid">
+        <article class="content-card"><h3>What this tool changes</h3><p>Image Color Remover compares every pixel with the color you select. Pixels inside the selected range become transparent in the downloaded PNG. Start with a narrow tolerance, then widen it only when nearby shades need to be included.</p><p>Because the processing happens in your browser, the source image is not uploaded, stored, or edited in place. The download is a new PNG and the original remains untouched.</p></article>
+        <article class="content-card"><h3>How to get a clean result</h3><p>Click a clean representative area of the unwanted color. Keep tolerance low for logos, icons, diagrams, and exact digital fills. For anti-aliased edges or uneven lighting, increase tolerance gradually while watching the checkerboard.</p><p>Use a small amount of edge softness only when a hard outline remains. If an important area begins to disappear, lower the tolerance or sample a different pixel.</p></article>
+        <article class="content-card"><h3>When this is the right method</h3><p>${uses[0][2]}</p><p>This method is deterministic: it follows the color range you choose instead of guessing which object is the subject. That makes it useful for artwork and flat backgrounds where you need predictable pixel-level control.</p></article>
+        <article class="content-card"><h3>Important limitation</h3><p>${limits}</p><p>Export as PNG to preserve transparency. JPEG cannot store transparent pixels.</p></article>
+      </div>
+      <div class="quick-answer"><h2>Quick workflow</h2><p><strong>Open the image → click the unwanted color → adjust tolerance → inspect the transparent preview → download PNG.</strong> ${related}</p></div>
+    </section>
+    <section class="shell section" aria-labelledby="${path}-examples-heading">
+      <div class="section-head"><h2 id="${path}-examples-heading">Focused jobs.<br>One chosen color.</h2><p>These examples work when the unwanted area is mostly one flat or consistently shaded color.</p></div>
+      <div class="use-grid">${useCards}
+      </div>
+    </section>
+    <section class="shell section" aria-labelledby="${path}-steps-heading">
+      <div class="section-head"><h2 id="${path}-steps-heading">Make one color<br>transparent.</h2><p>Small adjustments are safer than a broad threshold, especially near important edges.</p></div>
+      <div class="steps-grid">
+        <article class="step-card"><b>1</b><h3>Open the source image</h3><p>Choose PNG, JPG, JPEG, or WebP. Keep the original file as your backup.</p></article>
+        <article class="step-card"><b>2</b><h3>Sample the unwanted color</h3><p>Click a clear pixel, or enter a six-digit HEX value when you know the exact color.</p></article>
+        <article class="step-card"><b>3</b><h3>Tune the matching range</h3><p>Raise tolerance only enough to catch related shades; add slight softness for anti-aliased edges.</p></article>
+        <article class="step-card"><b>4</b><h3>Download transparent PNG</h3><p>Check the result against the checkerboard, then save a new PNG with transparency preserved.</p></article>
+      </div>
+    </section>`,
+    faqTitle,
+    faq,
+  };
+}
+
 const pages = [
   {
     path: 'remove-color-from-png',
@@ -100,7 +165,157 @@ const pages = [
       ['Will this remove white areas inside the subject?', 'It can. This tool removes pixels by color, not by object. If white details must remain, use a lower tolerance or a subject-aware masking tool.'],
       ['Is this an AI background remover?', 'No. It removes a selected color range. It is best for consistent white backgrounds; AI tools are usually better for complex photographic scenes.']
     ]
-  }
+  },
+  createColorTaskPage({
+    path: 'remove-specific-color-from-image',
+    title: 'Remove Specific Color From Image Online — Free & Private',
+    description: 'Remove one specific color from an image online. Click the color, adjust tolerance, and download a transparent PNG. Free, private, and no upload.',
+    heading: 'Remove a <span class="highlight">specific color</span><br>from an image.',
+    eyebrow: 'Free specific color remover',
+    hero: 'Choose the exact color you want removed, fine-tune similar shades, and download a transparent PNG. Your image stays in your browser.',
+    quickTitle: 'How to remove one specific color from an image',
+    quick: 'Open the image, click the unwanted color in the preview, start with low tolerance, and download the transparent PNG once the selected pixels are gone.',
+    accent: '#35a86b',
+    focus: 'Use this page when you know the exact color that should disappear: a colored backdrop, a logo canvas, a sticker fill, or one unwanted design element.',
+    uses: [
+      ['LOGO', 'Clear one canvas color around a logo', 'Click the flat color around a logo and keep tolerance narrow so the logo artwork remains intact.'],
+      ['GRAPHIC', 'Remove one unwanted fill', 'Target a single fill in a diagram, icon, or presentation graphic without changing the other colors.'],
+      ['STICKER', 'Make a sticker color transparent', 'Remove a known background color before placing the sticker on a new design or web page.'],
+      ['SCREENSHOT', 'Clean a solid UI color', 'Clear a flat panel color from a simple screenshot when it does not overlap important interface details.'],
+    ],
+    limits: 'It removes color values, not objects. If the same color appears in the subject or the background has shadows, gradients, hair, or reflections, a manual mask or subject-aware tool is safer.',
+    related: 'For a PNG-specific workflow, use the <a href="/remove-color-from-png/">PNG color remover</a>.',
+    faq: [
+      ['Can I choose an exact color to remove?', 'Yes. Click any pixel in the preview or enter its HEX color value, then adjust tolerance for similar shades.'],
+      ['Does it remove only that color?', 'It removes the selected color range. Keep tolerance low when the same color appears in details you want to preserve.'],
+      ['Are images uploaded?', 'No. Processing happens locally in your browser and the source image is not uploaded to our server.'],
+    ],
+  }),
+  createColorTaskPage({
+    path: 'make-color-transparent',
+    title: 'Make a Color Transparent Online — Free PNG Export',
+    description: 'Make one color transparent in an image online. Sample a color, control tolerance and edge softness, then download a transparent PNG. No upload.',
+    heading: 'Make a <span class="highlight">color</span><br>transparent.',
+    eyebrow: 'Free transparency tool',
+    hero: 'Turn one selected color into transparent pixels, preview the result on a checkerboard, and download a PNG without uploading your image.',
+    quickTitle: 'How to make a color transparent',
+    quick: 'Open an image, click the color to make transparent, increase tolerance for nearby shades only if needed, then export the result as PNG.',
+    accent: '#5b75ee',
+    focus: 'Use this page when the outcome you need is transparency, not a replacement color: transparent logo canvases, overlays, icons, and simple product graphics.',
+    uses: [
+      ['OVERLAY', 'Prepare a transparent overlay', 'Remove one background color from a graphic so it can sit over video, a website, or another image.'],
+      ['ICON', 'Export a clean transparent icon', 'Clear a known canvas color around an icon while keeping the icon pixels and crisp edges.'],
+      ['ASSET', 'Reuse a flat graphic', 'Turn a single-color background transparent before reusing a graphic in a new presentation or design.'],
+      ['PIXEL ART', 'Keep hard pixel edges', 'Choose zero softness and a low tolerance to preserve intentionally sharp color boundaries.'],
+    ],
+    limits: 'The transparency is based on color similarity. It cannot know whether a matching color belongs to the background or an important object, so inspect the preview before exporting.',
+    related: 'For white or off-white canvases, see the <a href="/remove-white-background-from-image/">white background remover</a>.',
+    faq: [
+      ['What file format supports transparent pixels?', 'PNG supports transparency. The tool always exports PNG so the transparent pixels are preserved.'],
+      ['Can I make a color partly transparent?', 'The tool uses tolerance and edge softness to produce smoother transparent edges where colors are close to the selected range.'],
+      ['Will JPG keep transparency?', 'No. JPEG cannot store transparency, which is why the download is a PNG file.'],
+    ],
+  }),
+  createColorTaskPage({
+    path: 'remove-background-color-from-image',
+    title: 'Remove Background Color From Image Online — Free Tool',
+    description: 'Remove a solid background color from an image online. Select the background color, tune tolerance, and download a transparent PNG. No upload required.',
+    heading: 'Remove a <span class="highlight">background color</span><br>from an image.',
+    eyebrow: 'Free solid background remover',
+    hero: 'Remove one solid or near-solid background color, inspect the transparent preview, and download a clean PNG — entirely in your browser.',
+    quickTitle: 'How to remove a background color from an image',
+    quick: 'Open your image, click a clear background pixel, raise tolerance gradually to include nearby shades, and download the result as a transparent PNG.',
+    accent: '#f1ca4b',
+    focus: 'This page is for simple backgrounds defined by one dominant color, such as a product graphic on a colored canvas, an icon tile, or an exported design asset.',
+    uses: [
+      ['PRODUCT', 'Clear a flat product-graphic backdrop', 'Remove a uniform colored canvas behind a product graphic when that color is not important inside the product.'],
+      ['DESIGN', 'Reuse an exported design asset', 'Turn a colored artboard transparent so the asset can be placed on a different background.'],
+      ['BADGE', 'Clean a colored badge canvas', 'Select the background around a badge or emblem while preserving its text and foreground shape.'],
+      ['ILLUSTRATION', 'Remove one illustration backdrop', 'Use a low tolerance for a digital illustration with a consistently colored backdrop.'],
+    ],
+    limits: 'It is not an AI subject remover. Complex photos with shadows, gradients, hair, reflections, or multiple background colors require masking or a subject-aware editor.',
+    related: 'If the background is white or almost white, use the <a href="/remove-white-background-from-image/">white background remover</a>.',
+    faq: [
+      ['Can I remove any background color?', 'You can remove a background that is mostly one consistent color or a narrow range of similar shades.'],
+      ['Why does some background remain?', 'The background may contain different shades from lighting, gradients, or compression. Raise tolerance slowly or sample a different background pixel.'],
+      ['Why did part of the subject disappear?', 'The selected color also appears in the subject or the tolerance is too broad. Lower it and try another sample.'],
+    ],
+  }),
+  createColorTaskPage({
+    path: 'remove-green-background-from-image',
+    title: 'Remove Green Background From Image Online — Free & Private',
+    description: 'Remove a green or green-screen-style background from a simple image online. Tune the green color range and download a transparent PNG. No upload.',
+    heading: 'Remove a <span class="highlight">green</span><br>background from image.',
+    eyebrow: 'Free green background remover',
+    hero: 'Select a green background, tune the color range for uneven green shades, and download a transparent PNG without uploading your image.',
+    quickTitle: 'How to remove a green background from an image',
+    quick: 'Open the image, click a clear green background area, begin with low tolerance, and increase it gradually until the green backdrop disappears.',
+    accent: '#22a06b',
+    focus: 'Use this page for graphics, product cutouts, simple portraits, and other images where the unwanted backdrop is green or green-screen-like and does not overlap key subject colors.',
+    uses: [
+      ['GRAPHIC', 'Clear a flat green design backdrop', 'Remove a consistent green canvas behind an illustration, icon, or product graphic.'],
+      ['PRODUCT', 'Prepare a product cutout', 'Make a green product-photo backdrop transparent when the product itself does not contain matching green details.'],
+      ['SCREEN', 'Clean a simple green screen', 'For an evenly lit green background, sample a clean area and expand tolerance slowly at the subject edge.'],
+      ['ASSET', 'Create a transparent PNG asset', 'Export a reusable transparent PNG for presentations, websites, or compositing.'],
+    ],
+    limits: 'Green clothing, foliage, reflections, green eyes, or uneven lighting can overlap the selected range. This color-based tool cannot separate those automatically from the background.',
+    related: 'For another flat backdrop color, use the <a href="/remove-specific-color-from-image/">specific color remover</a>.',
+    faq: [
+      ['Can this remove a green screen?', 'It can remove a consistently colored green backdrop by color similarity. It works best when green does not appear in the subject.'],
+      ['How do I avoid removing green parts of the subject?', 'Use the lowest effective tolerance and inspect the preview. If the subject contains green, use masking or a subject-aware tool instead.'],
+      ['Does it work for video?', 'This page processes individual image files and exports PNG. It does not process video files.'],
+    ],
+  }),
+  createColorTaskPage({
+    path: 'remove-black-background-from-image',
+    title: 'Remove Black Background From Image Online — Free PNG Tool',
+    description: 'Remove a black or near-black background from a simple image online. Adjust tolerance carefully and download a transparent PNG. Private, no upload.',
+    heading: 'Remove a <span class="highlight">black</span><br>background from image.',
+    eyebrow: 'Free black background remover',
+    hero: 'Turn a black or near-black background transparent, fine-tune dark edge shades, and download a PNG that preserves transparency.',
+    quickTitle: 'How to remove a black background from an image',
+    quick: 'Open the image, click a clean black background pixel, start with low tolerance, and watch the preview before removing more near-black shades.',
+    accent: '#161616',
+    focus: 'Use this page for icons, logos, simple graphics, and images with a distinct black canvas. It is best when the foreground does not contain important black details.',
+    uses: [
+      ['LOGO', 'Clear a black logo canvas', 'Remove a black rectangle around a logo while retaining contrasting artwork and text.'],
+      ['ICON', 'Make a dark icon background transparent', 'Select the black canvas behind an icon and preserve the colored foreground.'],
+      ['ASSET', 'Reuse a dark-background graphic', 'Export a transparent version of a simple graphic for use over another background.'],
+      ['STICKER', 'Clean a black sticker edge', 'Use small tolerance adjustments to handle nearly black anti-aliased edge pixels.'],
+    ],
+    limits: 'Black shadows, outlines, hair, clothing, and dark product details can match the background. A broad tolerance may erase them, so this is not suitable for complex photographs.',
+    related: 'For a different flat color, open the <a href="/remove-color-from-png/">PNG color remover</a>.',
+    faq: [
+      ['Can I remove a near-black background?', 'Yes. Sample the actual dark pixel and increase tolerance gradually to include nearby near-black shades.'],
+      ['Why did dark details disappear?', 'They match the selected black range. Reduce tolerance or use a masking tool when those details need to remain.'],
+      ['Can I export with a transparent background?', 'Yes. The tool downloads a PNG, which retains the transparency created by the selected color range.'],
+    ],
+  }),
+  createColorTaskPage({
+    path: 'remove-color-from-logo',
+    title: 'Remove Color From Logo Online — Make Logo Background Transparent',
+    description: 'Remove one color from a logo online and export a transparent PNG. Click the logo background, keep edges crisp, and download privately with no upload.',
+    heading: 'Remove color<br>from a <span class="highlight">logo.</span>',
+    eyebrow: 'Free logo color remover',
+    hero: 'Clear one logo background or unwanted fill color, preserve crisp edges, and download a transparent PNG without uploading your design.',
+    quickTitle: 'How to remove a color from a logo',
+    quick: 'Open the logo, click the unwanted canvas color, keep tolerance low for exact fills, inspect the checkerboard, and download the transparent PNG.',
+    accent: '#ef6b5b',
+    focus: 'Use this page for logo files with a flat color canvas or one unwanted fill. It gives you direct control over the exact pixels that become transparent.',
+    uses: [
+      ['BRAND', 'Clear a colored logo canvas', 'Remove the solid rectangle behind a logo before using it on a website, document, or presentation.'],
+      ['ICON', 'Remove one logo fill', 'Target a single unwanted fill color in a simple icon or mark while keeping the rest of the logo.'],
+      ['EXPORT', 'Prepare a transparent PNG', 'Convert an existing logo export into a transparent PNG for flexible reuse.'],
+      ['PIXEL', 'Preserve crisp graphic edges', 'Start with tolerance near zero and no softness for logos made with exact digital colors.'],
+    ],
+    limits: 'If the same color appears inside the logo artwork, it can disappear too. Complex logos with gradients, shadows, and textured backgrounds may need a layered editor or vector source file.',
+    related: 'For pale edges after removal, try the <a href="/remove-white-halo-from-png/">white halo cleaner</a>.',
+    faq: [
+      ['Can I make a logo background transparent?', 'Yes. Select the flat background color around the logo and export the result as a transparent PNG.'],
+      ['Will the logo itself stay unchanged?', 'The tool changes pixels matching the selected range. Use low tolerance when the logo contains a similar color you want to keep.'],
+      ['Does this work with JPG logos?', 'Yes, but the download is PNG because PNG is required to keep the new transparent background.'],
+    ],
+  }),
 ];
 
 function escapeJson(value) {

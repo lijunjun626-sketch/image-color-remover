@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "test": "node --test color-removal.test.js",
+    "test": "node --test color-removal.test.js feedback.test.js",
     "build": "node scripts/build.mjs",
     "deploy": "npm run build && wrangler deploy",
     "deploy:dry": "npm run build && wrangler deploy --dry-run"

@@ -4,6 +4,8 @@ import './generate-task-pages.mjs';
 const productionFiles = [
   'index.html',
   'color-removal.js',
+  'feedback.css',
+  'feedback.js',
   'favicon.svg',
   'favicon-48.png',
   'apple-touch-icon.png',
@@ -15,8 +17,15 @@ const productionFiles = [
 ];
 
 const productionDirectories = [
+  'remove-white-halo-from-png',
   'remove-color-from-png',
-  'remove-white-background-from-image'
+  'remove-white-background-from-image',
+  'remove-specific-color-from-image',
+  'make-color-transparent',
+  'remove-background-color-from-image',
+  'remove-green-background-from-image',
+  'remove-black-background-from-image',
+  'remove-color-from-logo'
 ];
 
 await rm('dist', { recursive: true, force: true });

@@ -27,6 +27,12 @@ This is a color-based transparency tool, not an AI subject detector. For complex
 
 - [Remove Color From PNG](https://imagecolorremover.com/remove-color-from-png/): removes one selected color or color range from a PNG and downloads a new transparent PNG. Includes tolerance and edge guidance, limitations, and a live local-processing tool.
 - [Remove White Background From Image](https://imagecolorremover.com/remove-white-background-from-image/): makes white or near-white pixels transparent and downloads a PNG. Best for consistent white backgrounds, logos, icons, signatures, and simple graphics.
+- [Remove Specific Color From Image](https://imagecolorremover.com/remove-specific-color-from-image/): removes one known color or narrow range and downloads a transparent PNG.
+- [Make Color Transparent](https://imagecolorremover.com/make-color-transparent/): turns one selected color into transparent pixels and exports PNG.
+- [Remove Background Color From Image](https://imagecolorremover.com/remove-background-color-from-image/): clears a solid or near-solid colored image background.
+- [Remove Green Background From Image](https://imagecolorremover.com/remove-green-background-from-image/): handles simple green or green-screen-style image backdrops.
+- [Remove Black Background From Image](https://imagecolorremover.com/remove-black-background-from-image/): clears black or near-black canvases from simple graphics.
+- [Remove Color From Logo](https://imagecolorremover.com/remove-color-from-logo/): makes a flat logo canvas or selected fill transparent.
 
 ## Choosing the correct page
 

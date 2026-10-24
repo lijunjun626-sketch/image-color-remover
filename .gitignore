@@ -2,5 +2,7 @@ node_modules/
 dist/
 .wrangler/
 .DS_Store
+.gstack/
+/imagecolorremover-feedback.zip
 remove-color-from-png/
 remove-white-background-from-image/

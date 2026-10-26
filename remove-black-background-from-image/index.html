@@ -137,6 +137,10 @@
     .control-label { display: flex; justify-content: space-between; align-items: center; gap: 15px; margin-bottom: 11px; font-size: 13px; font-weight: 700; }
     .control-value { font: 600 11px/1 var(--mono); }
     .picker-row { display: grid; grid-template-columns: 46px 1fr; gap: 10px; }
+    .operation-toggle { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-top: 12px; }
+    .operation-toggle button { min-height: 39px; padding: 8px 10px; border: 1px solid var(--ink); border-radius: 11px; color: var(--ink); background: var(--white); font-size: 12px; font-weight: 700; cursor: pointer; }
+    .operation-toggle button[aria-checked="true"] { background: var(--lime); box-shadow: 2px 2px 0 var(--ink); }
+    .replacement-control { margin-top: 16px; padding: 14px; border: 1px solid var(--line); border-radius: 14px; background: #f1ffe1; }
     .color-well { width: 46px; height: 46px; padding: 0; border: 1px solid var(--ink); border-radius: 12px; background: #fff; cursor: pointer; overflow: hidden; }
     .color-well input { width: 64px; height: 64px; margin: -10px; border: 0; cursor: pointer; }
     .hex-input { min-width: 0; border: 1px solid var(--ink); border-radius: 12px; padding: 0 13px; background: var(--white); font: 600 13px/1 var(--mono); text-transform: uppercase; }
@@ -354,7 +358,7 @@
 
   <main>
     <section class="shell hero">
-      <div class="hero-copy-block"><p class="eyebrow">Free black background remover</p><h1>Remove a <span class="highlight">black</span><br>background from image.</h1><p class="hero-copy">Turn a black or near-black background transparent, fine-tune dark edge shades, and download a PNG that preserves transparency.</p><div class="hero-actions"><a class="hero-cta" href="#tool-heading">Try the live tool ↓</a><div class="hero-notes" aria-label="Product benefits"><span>No sign-up</span><span>No upload</span><span>Pixel preview</span></div></div></div>
+      <div class="hero-copy-block"><p class="eyebrow">Free browser-based image tool</p><h1>Remove or<br><span class="highlight">replace color.</span></h1><p class="hero-copy">Pick the color you want to change, tune the tolerance, then make it transparent or swap it for a new color. Nothing leaves your device.</p><div class="hero-actions"><a class="hero-cta" href="#tool-heading">Try the live tool ↓</a><div class="hero-notes" aria-label="Product benefits"><span>No sign-up</span><span>No upload</span><span>Pixel preview</span></div></div></div>
       <div class="hero-compare-card">
         <div class="hero-compare-visual">
           <div class="hero-compare-layer before"><svg viewBox="0 0 560 470" role="img" aria-label="Logo on green before removing its background color"><rect width="560" height="470" fill="#35a86b"/><circle cx="280" cy="174" r="72" fill="none" stroke="#151515" stroke-width="20"/><path d="M238 174h84M280 132v84" stroke="#151515" stroke-width="20" stroke-linecap="round"/><text x="280" y="306" text-anchor="middle" fill="#151515" font-family="system-ui,sans-serif" font-size="54" font-weight="800" letter-spacing="5">NORTH</text><text x="280" y="344" text-anchor="middle" fill="#151515" font-family="monospace" font-size="16" font-weight="700" letter-spacing="4">STUDIO GOODS</text></svg></div>
@@ -365,7 +369,7 @@
       </div>
     </section>
 
-    <section class="shell quick-answer" aria-labelledby="quick-answer-heading"><h2 id="quick-answer-heading">How to remove a black background from an image</h2><p>Open the image, click a clean black background pixel, start with low tolerance, and watch the preview before removing more near-black shades.</p></section>
+    <section class="shell quick-answer" aria-labelledby="quick-answer-heading"><h2 id="quick-answer-heading">How to change a color in an image</h2><p>Open the file, click the color you want to change, then choose whether to make it transparent or replace it with a new color. Adjust tolerance for nearby shades and download the PNG — entirely in your browser.</p></section>
 
     <section class="shell workspace" aria-labelledby="tool-heading">
       <div class="workspace-bar"><div class="workspace-title"><i></i><h2 id="tool-heading">Remove Black Background From Image Online tool</h2></div><span class="workspace-state" id="workspace-state">Demo image ready</span></div>
@@ -380,6 +384,14 @@
           <div class="control-group">
             <div class="step"><b>2</b> Choose a color</div>
             <div class="picker-row"><label class="color-well" title="Choose a color"><input id="color-picker" type="color" value="#161616" aria-label="Color to remove"></label><input class="hex-input" id="hex-input" value="#161616" maxlength="7" aria-label="Hex color to remove"></div>
+            <div class="operation-toggle" role="radiogroup" aria-label="Choose an edit action">
+              <button type="button" data-operation="remove" role="radio" aria-checked="true">Make transparent</button>
+              <button type="button" data-operation="replace" role="radio" aria-checked="false">Replace color</button>
+            </div>
+            <div class="replacement-control" id="replacement-control" hidden>
+              <label class="control-label" for="replacement-picker"><span>Replacement color</span><span class="control-value">New color</span></label>
+              <div class="picker-row"><label class="color-well" title="Choose replacement color"><input id="replacement-picker" type="color" value="#FF8D78" aria-label="Replacement color"></label><input class="hex-input" id="replacement-hex-input" value="#FF8D78" maxlength="7" aria-label="Replacement hex color"></div>
+            </div>
           </div>
 
           <div class="control-group">
@@ -396,7 +408,7 @@
         </aside>
 
         <div class="stage">
-          <div class="stage-toolbar"><div class="tabs" role="tablist" aria-label="Preview mode"><button class="active" data-mode="result" role="tab" aria-selected="true">Result</button><button data-mode="original" role="tab" aria-selected="false">Original</button></div><div class="preview-meta"><span class="transparency-key"><i></i> transparent</span><span class="zoom" id="image-size">1200 × 800</span></div></div>
+          <div class="stage-toolbar"><div class="tabs" role="tablist" aria-label="Preview mode"><button class="active" data-mode="result" role="tab" aria-selected="true">Result</button><button data-mode="original" role="tab" aria-selected="false">Original</button></div><div class="preview-meta"><span class="transparency-key" id="result-key"><i></i> transparent</span><span class="zoom" id="image-size">1200 × 800</span></div></div>
           <div class="canvas-wrap">
             <div class="canvas-frame" id="canvas-frame"><canvas id="canvas" width="1200" height="800" aria-label="Image color removal preview"></canvas><span class="canvas-hint">Click the image to sample a color</span></div>
             <div class="empty-state" id="empty-state" hidden><div><div class="empty-art" aria-hidden="true"></div><strong>Your image, minus one color.</strong><span>Drop a PNG, JPG or WebP to begin.</span></div></div>
@@ -461,6 +473,11 @@
     const dropZone = document.querySelector('#drop-zone');
     const colorPicker = document.querySelector('#color-picker');
     const hexInput = document.querySelector('#hex-input');
+    const replacementPicker = document.querySelector('#replacement-picker');
+    const replacementHexInput = document.querySelector('#replacement-hex-input');
+    const replacementControl = document.querySelector('#replacement-control');
+    const operationButtons = [...document.querySelectorAll('[data-operation]')];
+    const resultKey = document.querySelector('#result-key');
     const tolerance = document.querySelector('#tolerance');
     const softness = document.querySelector('#softness');
     const preserve = document.querySelector('#preserve');
@@ -472,6 +489,7 @@
     let mode = 'result';
     let sourceName = 'color-removed';
     let renderFrame = 0;
+    let operation = 'remove';
 
     function showToast(message) {
       toast.textContent = message;
@@ -502,12 +520,16 @@
         return;
       }
       const target = hexToRgb(colorPicker.value);
+      const replacement = hexToRgb(replacementPicker.value);
+      const options = {
+        tolerance: tolerance.value,
+        softness: softness.value,
+        preserveShadows: preserve.checked
+      };
       const output = new ImageData(
-        ImageColorCore.removeColorPixels(sourcePixels.data, target, {
-          tolerance: tolerance.value,
-          softness: softness.value,
-          preserveShadows: preserve.checked
-        }),
+        operation === 'replace'
+          ? ImageColorCore.replaceColorPixels(sourcePixels.data, target, replacement, options)
+          : ImageColorCore.removeColorPixels(sourcePixels.data, target, options),
         sourcePixels.width,
         sourcePixels.height
       );
@@ -546,8 +568,18 @@
       updateRangeFill(tolerance);
       updateRangeFill(softness);
       preserve.checked = true;
+      setOperation('remove');
       mode = 'result';
       setActiveTab();
+    }
+
+    function setOperation(nextOperation) {
+      operation = nextOperation;
+      const isReplace = operation === 'replace';
+      replacementControl.hidden = !isReplace;
+      operationButtons.forEach(button => button.setAttribute('aria-checked', String(button.dataset.operation === operation)));
+      resultKey.innerHTML = isReplace ? '<i></i> recolored' : '<i></i> transparent';
+      download.textContent = isReplace ? 'Download recolored PNG' : 'Download transparent PNG';
     }
 
     function drawPreset(name = 'logo') {
@@ -655,6 +687,14 @@
     [tolerance, softness].forEach(input => { updateRangeFill(input); input.addEventListener('input', () => { updateRangeFill(input); document.querySelector(`#${input.id}-value`).textContent = input.value; mode='result'; setActiveTab(); scheduleRender(); }); });
     colorPicker.addEventListener('input', () => { hexInput.value = colorPicker.value.toUpperCase(); mode='result'; setActiveTab(); render(); });
     hexInput.addEventListener('change', () => { const rgb = hexToRgb(hexInput.value); if (!rgb) { hexInput.value = colorPicker.value.toUpperCase(); showToast('Enter a six-digit HEX color.'); return; } colorPicker.value = rgbToHex(...rgb).toLowerCase(); hexInput.value = colorPicker.value.toUpperCase(); render(); });
+    replacementPicker.addEventListener('input', () => { replacementHexInput.value = replacementPicker.value.toUpperCase(); mode='result'; setActiveTab(); render(); });
+    replacementHexInput.addEventListener('change', () => { const rgb = hexToRgb(replacementHexInput.value); if (!rgb) { replacementHexInput.value = replacementPicker.value.toUpperCase(); showToast('Enter a six-digit HEX color.'); return; } replacementPicker.value = rgbToHex(...rgb).toLowerCase(); replacementHexInput.value = replacementPicker.value.toUpperCase(); render(); });
+    operationButtons.forEach(button => button.addEventListener('click', () => {
+      setOperation(button.dataset.operation);
+      mode = 'result';
+      setActiveTab();
+      render();
+    }));
     preserve.addEventListener('change', render);
     fileInput.addEventListener('change', () => loadFile(fileInput.files[0]));
     ['dragenter','dragover'].forEach(type => dropZone.addEventListener(type, event => { event.preventDefault(); dropZone.classList.add('is-over'); }));
@@ -676,14 +716,14 @@
         }
         const url = URL.createObjectURL(blob);
         const link = document.createElement('a');
-        link.download = `${sourceName}-transparent.png`;
+        link.download = `${sourceName}-${operation === 'replace' ? 'recolored' : 'transparent'}.png`;
         link.href = url;
         link.click();
         setTimeout(() => URL.revokeObjectURL(url), 1000);
         download.disabled = false;
         mode = oldMode;
         render();
-        showToast('Transparent PNG downloaded.');
+        showToast(operation === 'replace' ? 'Recolored PNG downloaded.' : 'Transparent PNG downloaded.');
       }, 'image/png');
     });
     function bindDirectComparison(container, visual, range) {
@@ -734,7 +774,7 @@
       duplicateTaskSet.setAttribute('aria-hidden', 'true');
       taskReelTrack.append(duplicateTaskSet);
     }
-    document.querySelector('#reset').addEventListener('click', () => { fileInput.value=''; tolerance.value=18; softness.value=8; preserve.checked=true; colorPicker.value='#161616'; hexInput.value='#161616'; document.querySelector('#tolerance-value').textContent='18'; document.querySelector('#softness-value').textContent='8'; updateRangeFill(tolerance); updateRangeFill(softness); mode='result'; setActiveTab(); drawDemo(); });
+    document.querySelector('#reset').addEventListener('click', () => { fileInput.value=''; tolerance.value=18; softness.value=8; preserve.checked=true; colorPicker.value='#161616'; hexInput.value='#161616'; replacementPicker.value='#ff8d78'; replacementHexInput.value='#FF8D78'; document.querySelector('#tolerance-value').textContent='18'; document.querySelector('#softness-value').textContent='8'; updateRangeFill(tolerance); updateRangeFill(softness); setOperation('remove'); mode='result'; setActiveTab(); drawDemo(); });
     drawDemo();
   </script>
   <script src="/feedback.js" defer></script>
